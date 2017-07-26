@@ -1,6 +1,6 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
@@ -9,16 +9,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-//7/25/17
-public class TitleScreen extends JApplet //implements MouseListener
+
+public class TitleScreen extends JApplet
 {
-
-	public static boolean easy = false;
-	public static boolean med = false;
-	public static boolean hard = false;
-
-	private SpaceInvadersGame board;
+	private Sound sound;
+	private boolean easy = true;
+	private boolean med = false;
+	private boolean hard = false;
+	public static TitleScreen theApp;
 	
+	private SpaceInvadersGame board;
+
 	private ImageIcon titleScreenImage;//image
 
 
@@ -29,118 +30,59 @@ public class TitleScreen extends JApplet //implements MouseListener
 
 	//Main Buttons
 	private JFrame help;
-	private JFrame credits;
-
-	private boolean soundPlaying = true;
 
 	public void init () 
 	{		
-
-		try
-		{
-			playMusicMain();
-		}
-		catch(Exception err)
-		{
-			
-		}
+		sound = new Sound();
+		theApp = this;
+		playMusic();
 
 
 		//Adds the image and creates a button out of it
-		titleScreenImage = new ImageIcon(this.getClass().getResource("EasyMediumHard.jpg"));//image	
+		titleScreenImage = new ImageIcon(this.getClass().getResource("TSImage.jpg"));//image	
 		titleScButton = new JButton (titleScreenImage);//image button
 		getContentPane().add(titleScButton);
-		setSize(833,777);
+		setSize(320,240);
 		centerWindow();//centers the window
 
-		
+
+		titleScButton.addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent arg0) 
+			{
+				// TODO Auto-generated method stub
+				int c = arg0.getKeyCode();
+
+				//Pressing the keys 1 2 3 on the num pad on the right side of the keyboard
+				if (c == KeyEvent.VK_E || c == KeyEvent.VK_ENTER)
+				{
+					//System.out.println("Easy");
+
+					easy = true;
+					sound.stop();
+					addMainBoard();					
+				}
+			}
+		});
+
+
 		//Based on where they click in easy medium or hard something happens
 		titleScButton.addMouseListener(new MouseAdapter()
 		{
 			public void mouseClicked(MouseEvent e)
 			{
-				//System.out.println(e);
-				//EASY
-
-				if (e.getX() > 41 && e.getX() < 266 && e.getY() > 253 && e.getY() < 353)
-				{
-					//System.out.println("Easy");
-
-					easy = true;
-					Sound.audioClip.stop();
-					soundPlaying = false;
-
-
-					board = new SpaceInvadersGame();
-					try
-					{
-						board.init();
-					} catch (InterruptedException e1) 
-					{
-						//	System.out.println(e1);
-					}
-
-				}
-
-				//MEDIUM
-				//page.fillOval(112, 15, 75, 75);
-				if (e.getX() > 312 && e.getX() < 536 && e.getY() > 253 && e.getY() < 353)
-				{
-					//System.out.println("Medium");
-
-					med = true;
-
-					Sound.audioClip.stop();
-					soundPlaying = false;
-
-					
-					board = new SpaceInvadersGame();
-					try
-					{
-						board.init();
-					} catch (InterruptedException e1) 
-					{
-						System.out.println(e1);
-					}
-				}
-
-				//HARD
-				//page.fillOval(212, 15, 75, 75);
-				if (e.getX() > 579 && e.getX() < 803 && e.getY() > 253 && e.getY() < 353)
-				{
-					//System.out.println("Hard");
-
-					hard = true;
-
-					Sound.audioClip.stop();
-					soundPlaying = false;
-
-					
-					board = new SpaceInvadersGame();
-					try
-					{
-					board.init();
-					} catch (InterruptedException e1) 
-					{
-						//System.out.println(e1);
-					}
-
-				}
-
 				//Music Toggle
 				if (e.getX() > 0 && e.getX() < 27 && e.getY() > 745 && e.getY() < 769)
 				{
 
 					//System.out.println("Music toggle");
-					if (soundPlaying)
+					if (sound.isPlaying())
 					{
-						Sound.audioClip.stop();
-						soundPlaying = false;
+						sound.stop();
 					}
 					else
 					{
-						Sound.audioClip.start();
-						soundPlaying = true;
+						sound.resume();
 					}
 
 				}
@@ -151,17 +93,6 @@ public class TitleScreen extends JApplet //implements MouseListener
 					//	System.out.println("Help");
 					JOptionPane.showMessageDialog(help,
 							"Use the 9 num pad on the right side of the keyboard to whack the moles.");
-
-
-				}
-
-				//Credits
-				if (e.getX() > 770 && e.getX() < 830 && e.getY() > 1 && e.getY() < 14)
-				{
-
-					//	System.out.println("Credits");
-					JOptionPane.showMessageDialog(help,
-							"Created by Zac Thamer and Saumya Shukla");
 
 
 				}
@@ -187,25 +118,35 @@ public class TitleScreen extends JApplet //implements MouseListener
 	}
 
 
-
-
-	public class CloseListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
-		}
-	}
-
-	public void playMusic() throws InterruptedException
+	public void addMainBoard()
 	{
-		Sound.play("TitleScreenMusic.wav");
+		hideWindow();
+		
+		int level = 1;
+		if (med)
+			level = 2;
+		else
+			if (hard)
+				level = 3;
+		
+		board = new SpaceInvadersGame();
+		board.init(level);
 	}
 
-	public void playMusicMain() throws InterruptedException
+
+	public void playMusic()
 	{
-		playMusic();
-
+		sound.play("TitleScreenMusic.wav");
 	}
 
+	public void hideWindow()
+	{
+		Container c = getParent();
+		while (c.getParent()!=null) 
+			c = c.getParent();
+		c.setVisible(false);		
+	}
+	
 	//Centers the window
 	public void centerWindow()
 	{
@@ -224,5 +165,6 @@ public class TitleScreen extends JApplet //implements MouseListener
 			window.setLocationRelativeTo(null);					
 		}
 	}
+
 }
 
