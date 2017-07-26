@@ -3,12 +3,14 @@ import java.awt.Graphics;
 public class GameObject 
 {
 	
-	private static int x = 0;
-	private static int y = 0;
+	private int x = 0;
+	private int y = 0;
+	
+	private final int standardSize = 10;
 	
 	
 	
-	public static int getX()
+	public int getX()
 	{
 		return x;
 	}
@@ -18,7 +20,7 @@ public class GameObject
 		x = xPos;
 	}
 	
-	public static int getY()
+	public int getY()
 	{
 		return y;
 	}
@@ -28,7 +30,12 @@ public class GameObject
 		y = yPos;
 	}
 	
-	public void draw(Graphics obj)
+	public int getStandardSize()
+	{
+		return standardSize;
+	}
+	
+	public void draw(Graphics page)
 	{
 		
 	}
