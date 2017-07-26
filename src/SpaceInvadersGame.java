@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Window;
@@ -34,9 +35,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	{
 		sound = new Sound();
 		
+		setPreferredSize(new Dimension(400, 400));
+
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
-		frame.add(this);
+		frame.getContentPane().add(this);
 		frame.setTitle("Game Title");
 
 		JOptionPane.showMessageDialog(start, "Game Instructions");
