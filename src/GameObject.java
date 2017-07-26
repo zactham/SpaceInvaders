@@ -18,7 +18,7 @@ public class GameObject
 		x = xPos;
 	}
 	
-	public void draw(Graphics obj)
+	public void draw(Graphics page)
 	{
 		
 	}
