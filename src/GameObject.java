@@ -6,7 +6,7 @@ public class GameObject
 	private int x = 0;
 	private int y = 0;
 	
-	private final int standardSize = 10;
+	private final int standardSize = 100;
 	
 	
 	
