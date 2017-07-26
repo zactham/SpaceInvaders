@@ -42,6 +42,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		JFrame frame = new JFrame("Sample Frame");
 		frame.getContentPane().add(this);
 		frame.setTitle("Game Title");
+		frame.setBackground(Color.black);
 
 		JOptionPane.showMessageDialog(start, "Game Instructions");
 

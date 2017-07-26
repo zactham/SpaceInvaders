@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class GameObject 
@@ -41,7 +42,7 @@ public class GameObject
 		return projectileSize;
 	}
 	
-	public void draw(Graphics page)
+	public void draw (Graphics page)
 	{
 		
 	}

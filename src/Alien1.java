@@ -9,7 +9,8 @@ public class Alien1 extends GameObject
 		return GameObjectType.Alien1;
 	}
 	
-	public void draw(Graphics page, Color outline)
+	@Override
+	public void draw(Graphics page)
 	{
 		page.setColor(Color.red);
 		page.drawRect(getX(), getY(),getStandardSize(), getStandardSize());
