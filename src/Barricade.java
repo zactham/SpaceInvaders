@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Barricade extends GameObject{
+public class Barricade extends GameObject
+{
 
 	@Override
 	public GameObjectType getType()
@@ -14,7 +15,6 @@ public class Barricade extends GameObject{
 	{
 		page.setColor(Color.BLACK);
 		
-		page.drawRect(getX(), getY(), 100, 100);
-		//Not Standardsize?
+		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
 	}
 }

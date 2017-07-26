@@ -7,6 +7,7 @@ public class GameObject
 	private int y = 0;
 	
 	private final int standardSize = 100;
+	private final int projectileSize = 15;
 	
 	
 	
@@ -33,6 +34,11 @@ public class GameObject
 	public int getStandardSize()
 	{
 		return standardSize;
+	}
+	
+	public int getProjectileSize()
+	{
+		return projectileSize;
 	}
 	
 	public void draw(Graphics page)

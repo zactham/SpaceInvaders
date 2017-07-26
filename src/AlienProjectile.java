@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class AlienProjectile extends GameObject{
+public class AlienProjectile extends GameObject
+{
 	
 	@Override
 	public GameObjectType getType()
@@ -13,7 +14,7 @@ public class AlienProjectile extends GameObject{
 	public void draw(Graphics page)
 	{
 		page.setColor(Color.red);
-		page.drawRect(getX(), getY(), 15, 15);
+		page.drawRect(getX(), getY(), getProjectileSize(), getProjectileSize());
 	}
 	
 	@Override

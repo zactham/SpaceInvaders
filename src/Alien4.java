@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Alien4 extends GameObject{
+public class Alien4 extends GameObject
+{
 
 	@Override
 	public GameObjectType getType()
