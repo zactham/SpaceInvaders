@@ -6,13 +6,16 @@ public class AlienManager {
 
 	public void draw(Graphics page)
 	{
-		for(GameObject Alien : alienList){
+		for(GameObject Alien : alienList)
+		{
 			Alien.draw(page);
 		}
 	}
 	
-	public void update(){
-		for(GameObject Alien : alienList){
+	public void update()
+	{
+		for(GameObject Alien : alienList)
+		{
 			Alien.update();
 		}
 	}
