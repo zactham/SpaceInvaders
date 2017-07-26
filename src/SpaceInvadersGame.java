@@ -16,10 +16,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private int score = 0;
 	private boolean end;
 
-//	private JFrame restart;
+	//private JFrame restart;
 	private JFrame gameOver;
 	private JFrame start;
 
+	private final int gameboardSize = 1000;
 
 
 	// Constructor
@@ -34,8 +35,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void init(int level)
 	{
 		sound = new Sound();
-		
-		setPreferredSize(new Dimension(400, 400));
+
+		setPreferredSize(new Dimension(gameboardSize, gameboardSize));
 
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
@@ -66,7 +67,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerWindow();
 		frame.setLocationRelativeTo(TitleScreen.theApp);
-		
+
 		// runs the mainLoop
 		ActionListener timerAction = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
@@ -145,7 +146,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	private void resetGame()
 	{
-		
+
 	}
 
 	public void displayScore(Graphics page)
@@ -161,7 +162,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	protected void paintComponent(Graphics page)
 	{
 		super.paintComponent(page);		// paint baseclass members too
-		
+
 		displayScore(page);
 	}
 

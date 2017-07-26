@@ -3,12 +3,12 @@ import java.awt.Graphics;
 public class GameObject 
 {
 	
-	private int x = 0;
-	private int y = 0;
+	private static int x = 0;
+	private static int y = 0;
 	
 	
 	
-	public int getX()
+	public static int getX()
 	{
 		return x;
 	}
@@ -16,6 +16,16 @@ public class GameObject
 	public void setX(int xPos)
 	{
 		x = xPos;
+	}
+	
+	public static int getY()
+	{
+		return y;
+	}
+	
+	public void setY(int yPos)
+	{
+		y = yPos;
 	}
 	
 	public void draw(Graphics obj)
@@ -26,6 +36,11 @@ public class GameObject
 	public void update()
 	{
 		
+	}
+	
+	public GameObjectType getType()
+	{
+		return GameObjectType.NONE;
 	}
 	
 	
