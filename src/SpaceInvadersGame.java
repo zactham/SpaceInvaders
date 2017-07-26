@@ -65,7 +65,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		centerWindow();
-		frame.setSize(400, 400);
 		frame.setLocationRelativeTo(TitleScreen.theApp);
 		
 		// runs the mainLoop
