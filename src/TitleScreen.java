@@ -17,7 +17,7 @@ public class TitleScreen extends JApplet //implements MouseListener
 	public static boolean med = false;
 	public static boolean hard = false;
 
-	private MainCode board;
+	private SpaceInvadersGame board;
 	
 	private ImageIcon titleScreenImage;//image
 
@@ -71,7 +71,7 @@ public class TitleScreen extends JApplet //implements MouseListener
 					soundPlaying = false;
 
 
-					board = new MainCode();
+					board = new SpaceInvadersGame();
 					try
 					{
 						board.init();
@@ -94,7 +94,7 @@ public class TitleScreen extends JApplet //implements MouseListener
 					soundPlaying = false;
 
 					
-					board = new MainCode();
+					board = new SpaceInvadersGame();
 					try
 					{
 						board.init();
@@ -116,7 +116,7 @@ public class TitleScreen extends JApplet //implements MouseListener
 					soundPlaying = false;
 
 					
-					board = new MainCode();
+					board = new SpaceInvadersGame();
 					try
 					{
 					board.init();

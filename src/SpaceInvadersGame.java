@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class MainCode extends JPanel implements KeyListener
+public class SpaceInvadersGame extends JPanel implements KeyListener
 
 {
 
@@ -52,7 +52,7 @@ public class MainCode extends JPanel implements KeyListener
 
 
 	// Constructor
-	public MainCode()
+	public SpaceInvadersGame()
 	{
 		setFocusable(true);
 		// Register for mouse events on the panel
