@@ -4,10 +4,10 @@ import java.awt.Graphics;
 public class GameObject 
 {
 	
-	private int x = 0;
-	private int y = 0;
+	protected int x = 0;
+	protected int y = 0;
 	
-	private final int standardSize = 100;
+	private final int standardSize = 75;
 	private final int projectileSize = 15;
 	
 	
