@@ -193,7 +193,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	}
 
 
-
+	//To quickly change the direction of the player(without the player "Hesitating") you have to release
+	//the previous key before pressing the next one(More to this- press both keys, not at the same time, then release one and watch what happens).
+	//Maybe there is some way to remove the hesitation/continue the flow?
 
 	public void keyPressed(KeyEvent arg0) 
 	{
@@ -201,14 +203,14 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		int c = arg0.getKeyCode();
 
 		//Pressing the keys
-		if (c == KeyEvent.VK_NUMPAD1)
+		if (c == KeyEvent.VK_LEFT)
 		{
-
+			player.setDirection(PlayerDirection.LEFT);
 		}
 
-		if (c == KeyEvent.VK_NUMPAD2) 
+		if (c == KeyEvent.VK_RIGHT) 
 		{
-
+			player.setDirection(PlayerDirection.RIGHT);
 		}
 
 		if (c == KeyEvent.VK_NUMPAD3)
@@ -232,18 +234,23 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		int c = arg0.getKeyCode();
+
+		if (c == KeyEvent.VK_LEFT)
+		{
+			player.setDirection(PlayerDirection.NONE);
+		}
+
+		if (c == KeyEvent.VK_RIGHT) 
+		{
+			player.setDirection(PlayerDirection.NONE);
+		}
 
 	}
 
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
-	}
-
-	public void update(Graphics g) 
-	{
-		paint(g);
 	}
 
 }
