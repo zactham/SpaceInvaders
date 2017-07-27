@@ -15,4 +15,10 @@ public class Alien1 extends GameObject
 		page.setColor(Color.red);
 		page.drawRect(getX(), getY(),getStandardSize(), getStandardSize());
 	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+	}
 }

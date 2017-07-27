@@ -17,4 +17,10 @@ public class Barricade extends GameObject
 		
 		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
 	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+	}
 }

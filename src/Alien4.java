@@ -16,4 +16,10 @@ public class Alien4 extends GameObject
 		page.setColor(Color.YELLOW);
 		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
 	}
+	
+	@Override
+	public void update()
+	{
+		super.update();
+	}
 }
