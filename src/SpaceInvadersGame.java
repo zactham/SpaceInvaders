@@ -15,6 +15,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	Sound sound;
 	private int score = 0;
 	private boolean end;
+	
+	private Player player;
 
 	//private JFrame restart;
 	private JFrame gameOver;
@@ -35,6 +37,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void init(int level)
 	{
 		sound = new Sound();
+		
 
 		setPreferredSize(new Dimension(gameboardSize, gameboardSize));
 
@@ -46,6 +49,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		JOptionPane.showMessageDialog(start, "Game Instructions");
 
+		player = new Player();
+		player.setX(gameboardSize/2);
+		player.setY(gameboardSize-100);
+		
 		//Sets the speed of the game for each mode
 		if (level == 1)		// easy
 		{
@@ -88,7 +95,18 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void MainLoop()
 	{
-
+		updateGame();
+		repaint();
+	}
+	
+	public void updateGame()
+	{
+		player.update();
+	}
+	
+	public void drawGame(Graphics page)
+	{
+		player.draw(page);
 	}
 
 
@@ -165,6 +183,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		super.paintComponent(page);		// paint baseclass members too
 
 		displayScore(page);
+		
+		drawGame(page);
 	}
 
 	public int getScore()
