@@ -154,9 +154,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	{
 		//Displays the Score
 		page.setColor(Color.black);
-		page.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
-		page.drawString("SCORE: ", 75, 350);
-		page.drawString(Integer.toString(score), 275, 350);
+		page.setFont(new Font("Lucida Sans Typewriter" ,Font.PLAIN, 25));
+		page.drawString("SCORE: ", 15, 30);
+		page.drawString(Integer.toString(score), 15, 55);
 	}
 
 	@Override
