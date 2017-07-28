@@ -18,7 +18,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	
 	private Player player;
 	
-	private InputManager inputManager= new InputManager();
+	private InputManager inputManager;
+	private AlienManager alienManager;
 
 	//private JFrame restart;
 	private JFrame gameOver;
@@ -39,8 +40,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void init(int level)
 	{
 		sound = new Sound();
+		inputManager = new InputManager();
+		alienManager = new AlienManager();
 		
-
 		setPreferredSize(new Dimension(gameboardSize, gameboardSize));
 
 		// launch game
@@ -54,6 +56,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		player = new Player();
 		player.setX(gameboardSize/2);
 		player.setY(gameboardSize-100);
+		
+		alienManager.init();
 		
 		//Sets the speed of the game for each mode
 		if (level == 1)		// easy
@@ -104,12 +108,14 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void updateGame()
 	{
 		player.update();
+		alienManager.update();
 		checkKeys();
 	}
 	
 	public void drawGame(Graphics page)
 	{
 		player.draw(page);
+		alienManager.draw(page);
 	}
 
 
