@@ -17,6 +17,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private boolean end;
 	
 	private Player player;
+	
+	private InputManager inputManager= new InputManager();
 
 	//private JFrame restart;
 	private JFrame gameOver;
@@ -102,6 +104,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void updateGame()
 	{
 		player.update();
+		checkKeys();
 	}
 	
 	public void drawGame(Graphics page)
@@ -171,7 +174,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void displayScore(Graphics page)
 	{
 		//Displays the Score
-		page.setColor(Color.black);
+		page.setColor(Color.WHITE);
 		page.setFont(new Font("Lucida Sans Typewriter" ,Font.PLAIN, 25));
 		page.drawString("SCORE: ", 15, 30);
 		page.drawString(Integer.toString(score), 15, 55);
@@ -197,29 +200,28 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	//the previous key before pressing the next one(More to this- press both keys, not at the same time, then release one and watch what happens).
 	//Maybe there is some way to remove the hesitation/continue the flow?
 
-	public void keyPressed(KeyEvent arg0) 
+	public void checkKeys()
 	{
-		// TODO Auto-generated method stub
-		int c = arg0.getKeyCode();
 
+
+		
 		//Pressing the keys
-		if (c == KeyEvent.VK_LEFT)
+		if (inputManager.getKeyPressed(KeyEvent.VK_LEFT)==true)
 		{
 			player.setDirection(PlayerDirection.LEFT);
 		}
-
-		if (c == KeyEvent.VK_RIGHT) 
+		else if (inputManager.getKeyPressed(KeyEvent.VK_RIGHT)==true) 
 		{
 			player.setDirection(PlayerDirection.RIGHT);
 		}
-
-		if (c == KeyEvent.VK_NUMPAD3)
+		else
 		{
-
+			player.setDirection(PlayerDirection.NONE);
 		}
 
+
 		//When S is pressed the music stops
-		if (c == KeyEvent.VK_S) {
+		if (inputManager.getKeyPressed(KeyEvent.VK_S)==true) {
 			if (sound.isPlaying())
 			{
 				sound.stop();
@@ -230,22 +232,19 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			}
 		}
 	}
-
-
-
-	public void keyReleased(KeyEvent arg0) {
+	
+	public void keyPressed(KeyEvent arg0) 
+	{
 		int c = arg0.getKeyCode();
+		inputManager.setKeyPressed(c, true);
+	}
 
-		if (c == KeyEvent.VK_LEFT)
-		{
-			player.setDirection(PlayerDirection.NONE);
-		}
 
-		if (c == KeyEvent.VK_RIGHT) 
-		{
-			player.setDirection(PlayerDirection.NONE);
-		}
 
+	public void keyReleased(KeyEvent arg0) 
+	{
+		int c = arg0.getKeyCode();
+		inputManager.setKeyPressed(c, false);
 	}
 
 	public void keyTyped(KeyEvent arg0) {
