@@ -1,4 +1,5 @@
-public class InputManager {
+public class InputManager
+{
 
 	private boolean[] keyPressed = new boolean[256];
 	

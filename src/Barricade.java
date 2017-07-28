@@ -13,7 +13,7 @@ public class Barricade extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
-		page.setColor(Color.BLACK);
+		page.setColor(Color.BLUE);
 		
 		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
 	}

@@ -18,6 +18,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	
 	private Player player;
 	
+	private Barricade[] barricade = new Barricade[4];
+	
 	private InputManager inputManager;
 	private AlienManager alienManager;
 
@@ -56,6 +58,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		player = new Player();
 		player.setX(gameboardSize/2);
 		player.setY(gameboardSize-100);
+		
+		initBarricades();
 		
 		alienManager.init();
 		
@@ -108,6 +112,12 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void updateGame()
 	{
 		player.update();
+		
+		for (int i = 0; i < barricade.length; i++)
+		{
+			barricade[i].update();
+		}
+
 		alienManager.update();
 		checkKeys();
 	}
@@ -115,8 +125,39 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void drawGame(Graphics page)
 	{
 		player.draw(page);
+		
+		for (int i = 0; i < barricade.length; i++)
+		{
+			barricade[i].draw(page);
+		}
+
 		alienManager.draw(page);
 	}
+	
+	public void initBarricades()
+	{
+		Barricade one = new Barricade();
+		one.setX(gameboardSize/4);
+		one.setY(player.getY()+100);
+		barricade[0] = one;
+		
+		Barricade two = new Barricade();
+		two.setX(gameboardSize/3);
+		two.setY(player.getY()+100);	
+		barricade[1] = two;
+		
+		Barricade three = new Barricade();
+		three.setX(gameboardSize/2);
+		three.setY(player.getY()+100);
+		barricade[2] = three;
+		
+		Barricade four = new Barricade();
+		four.setX(gameboardSize/1);
+		four.setY(player.getY()+100);
+		barricade[3] = four;
+		
+	}
+
 
 
 	public void playMusicMain()
