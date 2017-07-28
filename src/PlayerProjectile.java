@@ -19,6 +19,7 @@ public class PlayerProjectile extends GameObject{
 	@Override
 	public void update()
 	{
-		super.update();
+		//super.update() ;
+		this.y-=8;
 	}
 }

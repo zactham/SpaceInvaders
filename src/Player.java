@@ -6,6 +6,7 @@ public class Player extends GameObject
 	private PlayerDirection direction = PlayerDirection.NONE;
 	private int speed = 2;
 	
+	private PlayerProjectile shot=null;
 	
 	@Override
 	public GameObjectType getType()
@@ -18,6 +19,10 @@ public class Player extends GameObject
 	{
 		page.setColor(Color.red);
 		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
+		if(!(shot==null))
+		{
+			shot.draw(page);
+		}
 	}
 	
 	public PlayerDirection getDirection()
@@ -40,5 +45,24 @@ public class Player extends GameObject
 		
 		if (direction == PlayerDirection.LEFT)
 			x-=speed;
+		
+		if(!(shot==null))
+		{
+			shot.update();
+			if(shot.y<0){
+				shot=null;
+			}
+		}
+	}
+	
+	public void fire()
+	{
+		if(shot==null)
+		{
+			shot=new PlayerProjectile();
+			//shot.setX(this.x);
+			shot.setX(this.x+((int)getStandardSize()/2)-shot.getProjectileSize()/2);
+			shot.setY(this.y);
+		}
 	}
 }

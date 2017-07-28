@@ -219,6 +219,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			player.setDirection(PlayerDirection.NONE);
 		}
 
+		if(inputManager.getKeyPressed(KeyEvent.VK_SPACE))
+		{
+			player.fire();
+		}
 
 		//When S is pressed the music stops
 		if (inputManager.getKeyPressed(KeyEvent.VK_S)==true) {
