@@ -3,6 +3,8 @@ import java.awt.Graphics;
 
 public class PlayerProjectile extends GameObject{
 	
+	private static final int speed=8;
+	
 	@Override
 	public GameObjectType getType()
 	{
@@ -19,7 +21,7 @@ public class PlayerProjectile extends GameObject{
 	@Override
 	public void update()
 	{
-		//super.update() ;
-		this.y-=8;
+		super.update();
+		this.y-=speed;
 	}
 }
