@@ -2,11 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-public class AlienManager extends GameObject
+public class AlienManager 
 {
 	private ArrayList<GameObject> alienList= new ArrayList<GameObject>();
 
-	@Override
 	public void draw(Graphics page)
 	{
 		for(GameObject Alien : alienList)
