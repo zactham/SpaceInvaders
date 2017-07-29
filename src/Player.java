@@ -78,8 +78,13 @@ public class Player extends GameObject
 		{
 			shot=new PlayerProjectile();
 			//shot.setX(this.x);
-			shot.setX(this.x+((int)getStandardSize()/2)-shot.getProjectileSize()/2);
-			shot.setY(this.y);
+			
+			//This will have to change eventually for now we can use this
+			//shot.setX(x+((int)getStandardSize()/2)-2/2);
+			//		or this
+			shot.setX(x+((int)getStandardSize()/2)-getProjectileSize()/2);
+			
+			shot.setY(y);
 			SpaceInvadersGame.sound.play("sounds//playerShoot.wav");
 		}
 	}

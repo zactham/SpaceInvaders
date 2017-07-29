@@ -14,8 +14,8 @@ public class PlayerProjectile extends GameObject{
 	@Override
 	public void draw(Graphics page)
 	{
-		page.setColor(Color.red);
-		page.drawRect(getX(), getY(), getProjectileSize(), getProjectileSize());
+		page.setColor(Color.white);
+		page.fillRect(getX(), getY(), 2, getProjectileSize());
 	}
 	
 	@Override

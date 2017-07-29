@@ -7,7 +7,7 @@ public class GameObject
 	protected int y = 0;
 
 	private static final int standardSize = 75;
-	private static final int projectileSize = 15;
+	private static final int projectileSize = 24;
 
 	private int gameWidth = 1000;
 	private int gameHeight = 1000;
