@@ -10,6 +10,7 @@ public class AlienManager
 		int xStart=100;
 		int xSpacing=80;
 		int yStart=100;
+		int ySpacing=100;
 		
 		for(int x=0; x<=10; x++)
 		{
@@ -18,33 +19,36 @@ public class AlienManager
 			a1.setY(yStart);
 			alienList.add(a1);
 		}
-		
+		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
 			Alien2 a2 = new Alien2();
 			a2.setX(xStart+(xSpacing*x));
-			a2.setY(225);
+			a2.setY(yStart);
 			alienList.add(a2);
 		}
+		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
 			Alien3 a3=new Alien3();
 			a3.setX(xStart+(xSpacing*x));
-			a3.setY(350);
+			a3.setY(yStart);
 			alienList.add(a3);
 		}
+		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
 			Alien4 a4 =new Alien4();
 			a4.setX(xStart+(xSpacing*x));
-			a4.setY(475);
+			a4.setY(yStart);
 			alienList.add(a4);
 		}
+		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
 			Alien4 a4 =new Alien4();
 			a4.setX(xStart+(xSpacing*x));
-			a4.setY(600);
+			a4.setY(yStart);
 			alienList.add(a4);
 		}
 	}
