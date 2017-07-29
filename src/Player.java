@@ -1,11 +1,12 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 public class Player extends GameObject
 {
 	private PlayerDirection direction = PlayerDirection.NONE;
 	private int speed = 2;
-
+	private Image playerImage;
 	private PlayerProjectile shot=null;
 
 	@Override
@@ -18,11 +19,21 @@ public class Player extends GameObject
 	public void draw(Graphics page)
 	{
 		page.setColor(Color.red);
-		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
+		page.drawImage(playerImage, getX(), getY(), null);
 		if(!(shot==null))
 		{
 			shot.draw(page);
 		}
+	}
+	
+	public void setImage(Image i)
+	{
+		playerImage=i;
+	}
+	
+	public Image getImage()
+	{
+		return playerImage;
 	}
 
 	public PlayerDirection getDirection()

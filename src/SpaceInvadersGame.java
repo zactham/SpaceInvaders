@@ -3,6 +3,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -56,6 +57,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		JOptionPane.showMessageDialog(start, "Game Instructions");
 
 		player = new Player();
+		Image playerImg = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//player.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+		player.setImage(playerImg);
 		player.setX(gameboardSize/2);
 		player.setY(gameboardSize-100);
 
@@ -136,6 +139,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void initBarricades()
 	{
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//barricade.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+		
 		Barricade one = new Barricade();
 		one.setX(gameboardSize/6 + one.getStandardSize());
 		one.setY(player.getY()-100);
@@ -156,6 +161,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		four.setY(player.getY()-100);
 		barricade[3] = four;
 
+		
+		for(int x=0; x<=3; x++)
+		{
+			barricade[x].setImage(img);
+		}
 	}
 
 
@@ -290,6 +300,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		//When S is pressed the music stops
 		if (c == KeyEvent.VK_S) 
 		{
+			
 			sound.toggle();
 		}
 	}
