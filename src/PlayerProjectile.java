@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class PlayerProjectile extends GameObject{
 	
-	private static final int speed=8;
+	private static final int speed=12;
 	
 	@Override
 	public GameObjectType getType()
