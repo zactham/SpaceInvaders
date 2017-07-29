@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class GameObject 
@@ -7,8 +6,8 @@ public class GameObject
 	protected int x = 0;
 	protected int y = 0;
 	
-	private final int standardSize = 75;
-	private final int projectileSize = 15;
+	private static final int standardSize = 75;
+	private static final int projectileSize = 15;
 	
 	
 	
@@ -32,12 +31,12 @@ public class GameObject
 		y = yPos;
 	}
 	
-	public int getStandardSize()
+	public static int getStandardSize()
 	{
 		return standardSize;
 	}
 	
-	public int getProjectileSize()
+	public static int getProjectileSize()
 	{
 		return projectileSize;
 	}

@@ -50,7 +50,7 @@ public class TitleScreen extends JApplet
 		{
 			public void keyPressed(KeyEvent arg0) 
 			{
-				// TODO Auto-generated method stub
+				
 				int c = arg0.getKeyCode();
 
 				//Pressing the keys 1 2 3 on the num pad on the right side of the keyboard
@@ -62,8 +62,22 @@ public class TitleScreen extends JApplet
 					sound.stop();
 					addMainBoard();					
 				}
+				
+				
+			}
+			
+			public void keyReleased(KeyEvent arg0)
+			{
+				int c = arg0.getKeyCode();
+				
+				if (c == KeyEvent.VK_S) 
+				{
+					Sound.toggle(sound);
+				}
 			}
 		});
+		
+	
 
 
 		//Based on where they click in easy medium or hard something happens
@@ -71,32 +85,7 @@ public class TitleScreen extends JApplet
 		{
 			public void mouseClicked(MouseEvent e)
 			{
-				//Music Toggle
-				if (e.getX() > 0 && e.getX() < 27 && e.getY() > 745 && e.getY() < 769)
-				{
-
-					//System.out.println("Music toggle");
-					if (sound.isPlaying())
-					{
-						sound.stop();
-					}
-					else
-					{
-						sound.resume();
-					}
-
-				}
-				//Help
-				if (e.getX() > 806 && e.getX() < 830 && e.getY() > 752 && e.getY() < 775)
-				{
-
-					//	System.out.println("Help");
-					JOptionPane.showMessageDialog(help,
-							"Use the 9 num pad on the right side of the keyboard to whack the moles.");
-
-
-				}
-
+				
 			}
 
 			public void mouseEntered(MouseEvent arg0) {

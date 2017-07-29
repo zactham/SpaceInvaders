@@ -15,11 +15,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	Sound sound;
 	private int score = 0;
 	private boolean end;
-	
+
 	private Player player;
-	
+
 	private Barricade[] barricade = new Barricade[4];
-	
+
 	private InputManager inputManager;
 	private AlienManager alienManager;
 
@@ -44,7 +44,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		sound = new Sound();
 		inputManager = new InputManager();
 		alienManager = new AlienManager();
-		
+
 		setPreferredSize(new Dimension(gameboardSize, gameboardSize));
 
 		// launch game
@@ -58,11 +58,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		player = new Player();
 		player.setX(gameboardSize/2);
 		player.setY(gameboardSize-100);
-		
+
 		initBarricades();
-		
+
 		alienManager.init();
-		
+
 		//Sets the speed of the game for each mode
 		if (level == 1)		// easy
 		{
@@ -108,11 +108,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		updateGame();
 		repaint();
 	}
-	
+
 	public void updateGame()
 	{
 		player.update();
-		
+
 		for (int i = 0; i < barricade.length; i++)
 		{
 			barricade[i].update();
@@ -121,11 +121,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		alienManager.update();
 		checkKeys();
 	}
-	
+
 	public void drawGame(Graphics page)
 	{
 		player.draw(page);
-		
+
 		for (int i = 0; i < barricade.length; i++)
 		{
 			barricade[i].draw(page);
@@ -133,29 +133,29 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		alienManager.draw(page);
 	}
-	
+
 	public void initBarricades()
 	{
 		Barricade one = new Barricade();
-		one.setX(gameboardSize/4);
-		one.setY(player.getY()+100);
+		one.setX(gameboardSize/6 + one.getStandardSize());
+		one.setY(player.getY()-100);
 		barricade[0] = one;
-		
+
 		Barricade two = new Barricade();
-		two.setX(gameboardSize/3);
-		two.setY(player.getY()+100);	
+		two.setX((gameboardSize/6)*2 + one.getStandardSize());
+		two.setY(player.getY()-100);	
 		barricade[1] = two;
-		
+
 		Barricade three = new Barricade();
-		three.setX(gameboardSize/2);
-		three.setY(player.getY()+100);
+		three.setX((gameboardSize/6)*3 + one.getStandardSize());
+		three.setY(player.getY()-100);
 		barricade[2] = three;
-		
+
 		Barricade four = new Barricade();
-		four.setX(gameboardSize/1);
-		four.setY(player.getY()+100);
+		four.setX((gameboardSize/6)*4 + one.getStandardSize());
+		four.setY(player.getY()-100);
 		barricade[3] = four;
-		
+
 	}
 
 
@@ -233,7 +233,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		super.paintComponent(page);		// paint baseclass members too
 
 		displayScore(page);
-		
+
 		drawGame(page);
 	}
 
@@ -249,9 +249,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void checkKeys()
 	{
-
-
-		
 		//Pressing the keys
 		if (inputManager.getKeyPressed(KeyEvent.VK_LEFT)==true)
 		{
@@ -271,23 +268,16 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			player.fire();
 		}
 
-		//When S is pressed the music stops
-		if (inputManager.getKeyPressed(KeyEvent.VK_S)==true) {
-			if (sound.isPlaying())
-			{
-				sound.stop();
-			}
-			else
-			{
-				sound.resume();
-			}
-		}
+
 	}
-	
+
+
+
 	public void keyPressed(KeyEvent arg0) 
 	{
 		int c = arg0.getKeyCode();
 		inputManager.setKeyPressed(c, true);
+
 	}
 
 
@@ -296,6 +286,12 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	{
 		int c = arg0.getKeyCode();
 		inputManager.setKeyPressed(c, false);
+
+		//When S is pressed the music stops
+		if (c == KeyEvent.VK_S) 
+		{
+			Sound.toggle(sound);
+		}
 	}
 
 	public void keyTyped(KeyEvent arg0) {
