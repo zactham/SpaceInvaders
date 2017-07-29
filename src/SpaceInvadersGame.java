@@ -194,7 +194,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	//
 	public void gameEnding()
 	{
-
 		sound.stop();
 
 		int result = JOptionPane.showConfirmDialog(this, 

@@ -5,9 +5,9 @@ public class Player extends GameObject
 {
 	private PlayerDirection direction = PlayerDirection.NONE;
 	private int speed = 2;
-	
+
 	private PlayerProjectile shot=null;
-	
+
 	@Override
 	public GameObjectType getType()
 	{
@@ -24,28 +24,34 @@ public class Player extends GameObject
 			shot.draw(page);
 		}
 	}
-	
+
 	public PlayerDirection getDirection()
 	{
 		return direction;
 	}
-	
+
 	public void setDirection(PlayerDirection d)
 	{
 		direction = d;
 	}
-	
+
 	@Override
 	public void update()
 	{
 		super.update();
-		
+
+		if(this.getX() < 0)
+			this.setX(0);
+
+		if (this.getX()>getgameWidth()-getStandardSize())
+			this.setX(getgameWidth()-getStandardSize());
+
 		if (direction == PlayerDirection.RIGHT)
 			x+=speed;
-		
+
 		if (direction == PlayerDirection.LEFT)
 			x-=speed;
-		
+
 		if(!(shot==null))
 		{
 			shot.update();
@@ -54,7 +60,7 @@ public class Player extends GameObject
 			}
 		}
 	}
-	
+
 	public void fire()
 	{
 		if(shot==null)
