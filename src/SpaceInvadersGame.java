@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class SpaceInvadersGame extends JPanel implements KeyListener
 {
-	Sound sound;
+	public static Sound sound;
 	private int score = 0;
 	private boolean end;
 
@@ -266,6 +266,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if(inputManager.getKeyPressed(KeyEvent.VK_SPACE))
 		{
 			player.fire();
+			
 		}
 
 

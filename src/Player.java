@@ -63,6 +63,7 @@ public class Player extends GameObject
 			//shot.setX(this.x);
 			shot.setX(this.x+((int)getStandardSize()/2)-shot.getProjectileSize()/2);
 			shot.setY(this.y);
+			SpaceInvadersGame.sound.play("sounds//shoot.wav");
 		}
 	}
 }
