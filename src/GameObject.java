@@ -9,8 +9,8 @@ public class GameObject
 	private static final int standardSize = 75;
 	private static final int projectileSize = 24;
 
-	private int gameWidth = 1000;
-	private int gameHeight = 1000;
+	private static int gameWidth = 0;
+	private static int gameHeight = 0;
 
 
 
@@ -44,22 +44,22 @@ public class GameObject
 		return projectileSize;
 	}
 
-	public int getgameWidth()
+	public static int getGameWidth()
 	{
 		return gameWidth;
 	}
 
-	public void setgameWidth(int gw)
+	public static void setGameWidth(int gw)
 	{
 		gameWidth = gw;
 	}
 
-	public int getgameHeight()
+	public static int getGameHeight()
 	{
 		return gameHeight;
 	}
 
-	public void setgameHeight(int gh)
+	public static void setGameHeight(int gh)
 	{
 		gameHeight = gh;
 	}

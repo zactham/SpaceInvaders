@@ -28,8 +28,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private JFrame gameOver;
 	private JFrame start;
 
-	private final int gameboardSize = 1000;
-
+	private final int gameboardWidth = 700;
+	private final int gameboardHeight = 800;
 
 	// Constructor
 	public SpaceInvadersGame()
@@ -46,7 +46,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		inputManager = new InputManager();
 		alienManager = new AlienManager();
 
-		setPreferredSize(new Dimension(gameboardSize, gameboardSize));
+		setPreferredSize(new Dimension(gameboardWidth, gameboardHeight));
+		
+		GameObject.setGameHeight(gameboardHeight);
+		GameObject.setGameWidth(gameboardWidth);
 
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
@@ -59,8 +62,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		player = new Player();
 		Image playerImg = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//player.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
 		player.setImage(playerImg);
-		player.setX(gameboardSize/2);
-		player.setY(gameboardSize-100);
+		player.setX(gameboardWidth/2);
+		player.setY(gameboardHeight-100);
 
 		initBarricades();
 
@@ -142,22 +145,22 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//barricade.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
 		
 		Barricade one = new Barricade();
-		one.setX(gameboardSize/6 + one.getStandardSize());
+		one.setX(gameboardWidth/6 + one.getStandardSize());
 		one.setY(player.getY()-100);
 		barricade[0] = one;
 
 		Barricade two = new Barricade();
-		two.setX((gameboardSize/6)*2 + one.getStandardSize());
+		two.setX((gameboardWidth/6)*2 + one.getStandardSize());
 		two.setY(player.getY()-100);	
 		barricade[1] = two;
 
 		Barricade three = new Barricade();
-		three.setX((gameboardSize/6)*3 + one.getStandardSize());
+		three.setX((gameboardWidth/6)*3 + one.getStandardSize());
 		three.setY(player.getY()-100);
 		barricade[2] = three;
 
 		Barricade four = new Barricade();
-		four.setX((gameboardSize/6)*4 + one.getStandardSize());
+		four.setX((gameboardWidth/6)*4 + one.getStandardSize());
 		four.setY(player.getY()-100);
 		barricade[3] = four;
 
