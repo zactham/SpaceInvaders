@@ -22,6 +22,22 @@ public class AlienManager
 		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
+			Alien1 a1=new Alien1();
+			a1.setX(xStart+(xSpacing*x));
+			a1.setY(yStart);
+			alienList.add(a1);
+		}
+		yStart+=ySpacing;
+		for(int x=0; x<=10; x++)
+		{
+			Alien2 a2 = new Alien2();
+			a2.setX(xStart+(xSpacing*x));
+			a2.setY(yStart);
+			alienList.add(a2);
+		}
+		yStart+=ySpacing;
+		for(int x=0; x<=10; x++)
+		{
 			Alien2 a2 = new Alien2();
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
@@ -34,22 +50,6 @@ public class AlienManager
 			a3.setX(xStart+(xSpacing*x));
 			a3.setY(yStart);
 			alienList.add(a3);
-		}
-		yStart+=ySpacing;
-		for(int x=0; x<=10; x++)
-		{
-			Alien4 a4 =new Alien4();
-			a4.setX(xStart+(xSpacing*x));
-			a4.setY(yStart);
-			alienList.add(a4);
-		}
-		yStart+=ySpacing;
-		for(int x=0; x<=10; x++)
-		{
-			Alien4 a4 =new Alien4();
-			a4.setX(xStart+(xSpacing*x));
-			a4.setY(yStart);
-			alienList.add(a4);
 		}
 	}
 	
