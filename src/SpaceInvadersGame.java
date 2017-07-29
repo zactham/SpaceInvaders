@@ -290,7 +290,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		//When S is pressed the music stops
 		if (c == KeyEvent.VK_S) 
 		{
-			Sound.toggle(sound);
+			sound.toggle();
 		}
 	}
 

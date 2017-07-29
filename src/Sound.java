@@ -46,15 +46,15 @@ public class Sound
 		}
 	}
 	
-	public static void toggle(Sound s)
+	public void toggle()
 	{
-		if (s.isPlaying())
+		if (isPlaying())
 		{
-			s.stop();
+			stop();
 		}
 		else
 		{
-			s.resume();
+			resume();
 		}
 	}
 

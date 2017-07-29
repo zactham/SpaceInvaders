@@ -72,7 +72,7 @@ public class TitleScreen extends JApplet
 				
 				if (c == KeyEvent.VK_S) 
 				{
-					Sound.toggle(sound);
+					sound.toggle();
 				}
 			}
 		});
