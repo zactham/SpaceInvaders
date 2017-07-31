@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class SpaceInvadersGame extends JPanel implements KeyListener
 {
-	public static Sound sound;
+	private Sound sound;
 	private int score = 0;
 	private boolean end;
 
@@ -144,29 +144,13 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	{
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//barricade.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
 		
-		Barricade one = new Barricade();
-		one.setX(gameboardWidth/6 + one.getStandardSize());
-		one.setY(player.getY()-100);
-		barricade[0] = one;
-
-		Barricade two = new Barricade();
-		two.setX((gameboardWidth/6)*2 + one.getStandardSize());
-		two.setY(player.getY()-100);	
-		barricade[1] = two;
-
-		Barricade three = new Barricade();
-		three.setX((gameboardWidth/6)*3 + one.getStandardSize());
-		three.setY(player.getY()-100);
-		barricade[2] = three;
-
-		Barricade four = new Barricade();
-		four.setX((gameboardWidth/6)*4 + one.getStandardSize());
-		four.setY(player.getY()-100);
-		barricade[3] = four;
-
-		
 		for(int x=0; x<=3; x++)
 		{
+			Barricade b = new Barricade();
+			b.setX((gameboardWidth/6) * x+1 + b.getStandardSize());
+			b.setY(player.getY()-100);
+			barricade[x] = b;
+					
 			barricade[x].setImage(img);
 		}
 	}

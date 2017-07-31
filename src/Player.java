@@ -8,6 +8,8 @@ public class Player extends GameObject
 	private int speed = 2;
 	private Image playerImage;
 	private PlayerProjectile shot=null;
+	
+	private Sound sound = new Sound();
 
 	@Override
 	public GameObjectType getType()
@@ -85,7 +87,7 @@ public class Player extends GameObject
 			shot.setX(x+((int)getStandardSize()/2)-getProjectileSize()/2);
 			
 			shot.setY(y);
-			SpaceInvadersGame.sound.play("sounds//playerShoot.wav");
+			sound.play("sounds//playerShoot.wav");
 		}
 	}
 }

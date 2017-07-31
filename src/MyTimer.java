@@ -1,7 +1,7 @@
 public class MyTimer 
 {
-	long start = 0;
-	long delay;
+	private long start = 0;
+	private long delay;
 
 	public MyTimer(int delay)
 	{
@@ -17,7 +17,16 @@ public class MyTimer
 	{
 		return ((System.currentTimeMillis() - this.start) > this.delay);
 	}
+	
+	public void setDelay(long d)
+	{
+		delay = d;
+	}
 
+	public long getDelay()
+	{
+		return delay;
+	}
 }
 
 

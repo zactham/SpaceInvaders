@@ -1,8 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Alien3 extends GameObject
+public class Alien3 extends Alien
 {
+	private Sound sound = new Sound();
 	
 	@Override
 	public GameObjectType getType()
@@ -10,16 +11,4 @@ public class Alien3 extends GameObject
 		return GameObjectType.Alien3;
 	}
 	
-	@Override
-	public void draw(Graphics page)
-	{
-		page.setColor(new Color(165, 42, 42));
-		page.drawRect(getX(), getY(), getStandardSize(), getStandardSize());
-	}
-	
-	@Override
-	public void update()
-	{
-		super.update();
-	}
 }
