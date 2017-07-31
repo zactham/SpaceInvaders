@@ -9,10 +9,10 @@ public class AlienManager
 
 	public void init()
 	{
-		int xStart=100;
-		int xSpacing=50;
-		int yStart=100;
-		int ySpacing=50;
+		int xStart=35;
+		int xSpacing=60;
+		int yStart=55;
+		int ySpacing=65;
 
 
 

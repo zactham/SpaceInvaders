@@ -147,7 +147,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		for(int x=0; x<=3; x++)
 		{
 			Barricade b = new Barricade();
-			b.setX((gameboardWidth/6) * x+1 + b.getStandardSize());
+			b.setX(((gameboardWidth/4-10) * x+1) + b.getStandardSize());
 			b.setY(player.getY()-100);
 			barricade[x] = b;
 					
