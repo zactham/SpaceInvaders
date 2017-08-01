@@ -85,7 +85,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		}
 
-		playMusicMain();
 
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -157,10 +156,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 
 
-	public void playMusicMain()
-	{
-		sound.play("IngameMusic.wav");
-	}
+	
 
 	public void playSoundEffect()
 	{
@@ -283,13 +279,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	{
 		int c = arg0.getKeyCode();
 		inputManager.setKeyPressed(c, false);
-
-		//When S is pressed the music stops
-		if (c == KeyEvent.VK_S) 
-		{
-			
-			sound.toggle();
-		}
 	}
 
 	public void keyTyped(KeyEvent arg0) {
