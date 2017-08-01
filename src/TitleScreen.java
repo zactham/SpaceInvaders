@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 
 public class TitleScreen extends JApplet
@@ -39,10 +38,10 @@ public class TitleScreen extends JApplet
 
 
 		//Adds the image and creates a button out of it
-		titleScreenImage = new ImageIcon(this.getClass().getResource("TSImage.jpg"));//image	
+		titleScreenImage = new ImageIcon(this.getClass().getResource("images/SpaceInvadersTitleScreen.jpg"));//image	
 		titleScButton = new JButton (titleScreenImage);//image button
 		getContentPane().add(titleScButton);
-		setSize(320,240);
+		setSize(509,400);
 		centerWindow();//centers the window
 
 

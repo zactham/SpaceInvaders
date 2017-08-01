@@ -16,16 +16,26 @@ public class AlienManager
 
 
 
-		Image alienImage1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
+		Image alien1Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
 				"images//alien1_1.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-		Image alienImage2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
+		Image alien1Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
 				"images//alien1_2.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		
+		Image alien2Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
+				"images//alien2_1.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		Image alien2Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
+				"images//alien2_2.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		
+		Image alien3Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
+				"images//alien3_1.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+		Image alien3Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
+				"images//alien3_2.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
 		for(int x=0; x<=10; x++)
 		{
 			Alien a1=new Alien1();
-			a1.addImage(alienImage1);
-			a1.addImage(alienImage2);
+			a1.addImage(alien1Image1);
+			a1.addImage(alien1Image2);
 			a1.setX(xStart+(xSpacing*x));
 			a1.setY(yStart);
 			alienList.add(a1);
@@ -36,8 +46,8 @@ public class AlienManager
 		{
 
 			Alien a1=new Alien1();
-			a1.addImage(alienImage1);
-			a1.addImage(alienImage2);
+			a1.addImage(alien1Image1);
+			a1.addImage(alien1Image2);
 			a1.setX(xStart+(xSpacing*x));
 			a1.setY(yStart);
 			alienList.add(a1);
@@ -47,8 +57,8 @@ public class AlienManager
 		for(int x=0; x<=10; x++)
 		{
 			Alien a2 = new Alien2();
-			a2.addImage(alienImage1);
-			a2.addImage(alienImage2);
+			a2.addImage(alien2Image1);
+			a2.addImage(alien2Image2);
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
 			alienList.add(a2);
@@ -58,8 +68,8 @@ public class AlienManager
 		for(int x=0; x<=10; x++)
 		{
 			Alien a2 = new Alien2();
-			a2.addImage(alienImage1);
-			a2.addImage(alienImage2);
+			a2.addImage(alien2Image1);
+			a2.addImage(alien2Image2);
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
 			alienList.add(a2);
@@ -69,8 +79,8 @@ public class AlienManager
 		for(int x=0; x<=10; x++)
 		{
 			Alien3 a3=new Alien3();
-			a3.addImage(alienImage1);
-			a3.addImage(alienImage2);
+			a3.addImage(alien3Image1);
+			a3.addImage(alien3Image2);
 			a3.setX(xStart+(xSpacing*x));
 			a3.setY(yStart);
 			alienList.add(a3);

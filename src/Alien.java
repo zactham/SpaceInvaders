@@ -6,7 +6,8 @@ public class Alien extends GameObject
 {
 	private ArrayList<Image> alienList= new ArrayList<Image>();
 	private MyTimer stepTimer = new MyTimer(2000);
-	int imageIndex = 0;
+	private int imageIndex = 0;
+	private Sound sound = new Sound();
 
 	public Alien()
 	{
