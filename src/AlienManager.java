@@ -9,27 +9,28 @@ public class AlienManager
 
 	public void init()
 	{
-		int xStart=35;
-		int xSpacing=50;
-		int yStart=55;
-		int ySpacing=50;
+		int xStart=140;
+	    int xSpacing=40;
+	    int yStart=55;
+	    int ySpacing=50;
+	    int alienSize=25;
 
 
 
 		Image alien3Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien1_1.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+				"images//alien1_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		Image alien3Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien1_2.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+				"images//alien1_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		
 		Image alien2Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien2_1.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+				"images//alien2_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		Image alien2Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien2_2.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+				"images//alien2_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		
 		Image alien1Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien3_1.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+				"images//alien3_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		Image alien1Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien3_2.png").getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+				"images//alien3_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 
 		for(int x=0; x<=10; x++)
 		{
