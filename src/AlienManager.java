@@ -117,8 +117,38 @@ public class AlienManager
 		alienList.remove(a);
 	}
 
+	private void getMaxAlienX()
+	{
+		GameObject farRightAlien = new GameObject();
+		farRightAlien.setX(-2);
+		
+		for(GameObject Alien: alienList)
+		{
+			if(Alien.getX()>farRightAlien.getX())
+			{
+				farRightAlien=Alien;
+			}
+		}
+	}
+	
+	private void getMinAlienX()
+	{
+		GameObject farLeftAlien = new GameObject();
+		farLeftAlien.setX(702);
+
+		for(GameObject Alien: alienList)
+		{
+			if(Alien.getX()<farLeftAlien.getX())
+			{
+				farLeftAlien=Alien;
+			}
+		}
+	
+	}
+	
 	public int getNumAliens()
 	{
 		return alienList.size();
 	}
+	
 }
