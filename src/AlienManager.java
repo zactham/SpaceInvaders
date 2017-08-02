@@ -117,7 +117,7 @@ public class AlienManager
 		alienList.remove(a);
 	}
 
-	private void getMaxAlienX()
+	private int getMaxAlienX()
 	{
 		GameObject farRightAlien = new GameObject();
 		farRightAlien.setX(-2);
@@ -129,9 +129,11 @@ public class AlienManager
 				farRightAlien=Alien;
 			}
 		}
+		
+		return farRightAlien.getX();
 	}
 	
-	private void getMinAlienX()
+	private int getMinAlienX()
 	{
 		GameObject farLeftAlien = new GameObject();
 		farLeftAlien.setX(702);
@@ -143,9 +145,9 @@ public class AlienManager
 				farLeftAlien=Alien;
 			}
 		}
-	
+		return farLeftAlien.getX();
 	}
-	
+
 	public int getNumAliens()
 	{
 		return alienList.size();
