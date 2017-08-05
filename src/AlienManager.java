@@ -7,13 +7,16 @@ public class AlienManager
 {
 	private ArrayList<GameObject> alienList= new ArrayList<GameObject>();
 
+	private int alienMaxX = 0;
+	private int alienMinX = 0;
+
 	public void init()
 	{
 		int xStart=140;
-	    int xSpacing=40;
-	    int yStart=55;
-	    int ySpacing=50;
-	    int alienSize=25;
+		int xSpacing=40;
+		int yStart=55;
+		int ySpacing=50;
+		int alienSize=25;
 
 
 
@@ -21,12 +24,12 @@ public class AlienManager
 				"images//alien1_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		Image alien3Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
 				"images//alien1_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
-		
+
 		Image alien2Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
 				"images//alien2_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		Image alien2Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
 				"images//alien2_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
-		
+
 		Image alien1Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
 				"images//alien3_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
 		Image alien1Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
@@ -121,7 +124,7 @@ public class AlienManager
 	{
 		GameObject farRightAlien = new GameObject();
 		farRightAlien.setX(-2);
-		
+
 		for(GameObject Alien: alienList)
 		{
 			if(Alien.getX()>farRightAlien.getX())
@@ -129,10 +132,11 @@ public class AlienManager
 				farRightAlien=Alien;
 			}
 		}
-		
-		return farRightAlien.getX();
+
+		alienMaxX  = farRightAlien.getX();
+		return alienMaxX;
 	}
-	
+
 	private int getMinAlienX()
 	{
 		GameObject farLeftAlien = new GameObject();
@@ -145,12 +149,13 @@ public class AlienManager
 				farLeftAlien=Alien;
 			}
 		}
-		return farLeftAlien.getX();
+		alienMinX =  farLeftAlien.getX();
+		return alienMinX;
 	}
 
 	public int getNumAliens()
 	{
 		return alienList.size();
 	}
-	
+
 }
