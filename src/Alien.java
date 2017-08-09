@@ -4,14 +4,23 @@ import java.util.ArrayList;
 
 public class Alien extends GameObject
 {
-	private ArrayList<Image> alienList= new ArrayList<Image>();
+	private static ArrayList<Image> alienList= new ArrayList<Image>();
 	private MyTimer stepTimer = new MyTimer(2000);
-	private int imageIndex = 0;
+	private static int imageIndex = 0;
 	private Sound sound = new Sound();
 
 	public Alien()
 	{
 		stepTimer.start();
+	}
+	
+	public static void incImageIndex()
+	{
+		imageIndex++;
+		if(imageIndex>alienList.size()-1)
+		{
+			imageIndex = 0;
+		}
 	}
 
 	public void addImage(Image i)

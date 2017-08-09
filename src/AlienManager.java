@@ -9,6 +9,7 @@ public class AlienManager
 
 	private int alienMaxX = 0;
 	private int alienMinX = 0;
+	
 
 	public void init()
 	{
@@ -118,6 +119,15 @@ public class AlienManager
 	public void removeAlien(GameObject a)
 	{
 		alienList.remove(a);
+	}
+	
+	
+	private void inceAlienImage()
+	{
+		for (int i = 0; i < alienList.size(); i++)
+		{
+			Alien.incImageIndex();
+		}
 	}
 
 	private int getMaxAlienX()
