@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Alien extends GameObject
 {
-	private static ArrayList<Image> alienList= new ArrayList<Image>();
+	private  ArrayList<Image> alienList= new ArrayList<Image>();
 	private MyTimer stepTimer = new MyTimer(2000);
 	private static int imageIndex = 0;
 	private Sound sound = new Sound();
@@ -14,7 +14,7 @@ public class Alien extends GameObject
 		stepTimer.start();
 	}
 	
-	public static void incImageIndex()
+	public void incImageIndex()
 	{
 		imageIndex++;
 		if(imageIndex>alienList.size()-1)

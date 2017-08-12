@@ -47,6 +47,7 @@ public class AlienManager
 			addAlien(a1);
 		}
 
+		
 		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
@@ -127,7 +128,7 @@ public class AlienManager
 	{
 		for (int i = 0; i < alienList.size(); i++)
 		{
-			Alien.incImageIndex();
+			alienList.get(i).incImageIndex();
 		}
 	}
 
