@@ -1,7 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class PlayerProjectile extends GameObject{
+public class PlayerProjectile extends GameObject
+{
 	
 	private static final int speed=12;
 	

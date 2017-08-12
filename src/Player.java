@@ -84,7 +84,7 @@ public class Player extends GameObject
 			//This will have to change eventually for now we can use this
 			//shot.setX(x+((int)getStandardSize()/2)-2/2);
 			//		or this
-			shot.setX(x+((int)getStandardSize()/2)-getProjectileSize()/2);
+			shot.setX(11+x+((int)getStandardSize()/2)-getProjectileSize()/2);
 			
 			shot.setY(y);
 			sound.play("sounds//playerShoot.wav");
