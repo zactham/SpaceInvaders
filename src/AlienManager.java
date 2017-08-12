@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -7,9 +6,11 @@ public class AlienManager
 {
 	private ArrayList<GameObject> alienList= new ArrayList<GameObject>();
 
-	private int alienMaxX = 0;
-	private int alienMinX = 0;
-	
+	private int alienMaxX;
+	private GameObject farRightAlien;
+	private int alienMinX;
+	private GameObject farLeftAlien;
+
 
 	public void init()
 	{
@@ -120,8 +121,8 @@ public class AlienManager
 	{
 		alienList.remove(a);
 	}
-	
-	
+
+
 	private void inceAlienImage()
 	{
 		for (int i = 0; i < alienList.size(); i++)
@@ -132,7 +133,7 @@ public class AlienManager
 
 	private int getMaxAlienX()
 	{
-		GameObject farRightAlien = new GameObject();
+
 		farRightAlien.setX(-2);
 
 		for(GameObject Alien: alienList)
@@ -149,7 +150,7 @@ public class AlienManager
 
 	private int getMinAlienX()
 	{
-		GameObject farLeftAlien = new GameObject();
+
 		farLeftAlien.setX(702);
 
 		for(GameObject Alien: alienList)
@@ -161,6 +162,30 @@ public class AlienManager
 		}
 		alienMinX =  farLeftAlien.getX();
 		return alienMinX;
+	}
+
+	private void moveAliensSideways(int increment)
+	{
+		for (int i = 0; i < alienList.size(); i++)
+		{
+			GameObject temp = alienList.get(i);
+			int X = temp.getX();
+			X+=increment;
+			temp.setX(X);
+			alienList.set(i, temp);
+		}
+	}
+	
+	private void moveAliensDown()
+	{
+		for (int i = 0; i < alienList.size(); i++)
+		{
+			GameObject temp = alienList.get(i);
+			int Y = temp.getY();
+			Y+=50;
+			temp.setY(Y);
+			alienList.set(i, temp);
+		}
 	}
 
 	public int getNumAliens()
