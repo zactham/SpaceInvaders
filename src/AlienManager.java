@@ -7,9 +7,9 @@ public class AlienManager
 	private ArrayList<Alien> alienList= new ArrayList<Alien>();
 
 	private int alienMaxX;
-	private Alien farRightAlien;
 	private int alienMinX;
-	private Alien farLeftAlien;
+
+	private int rowSpacing = 50;
 
 
 	public void init()
@@ -47,7 +47,7 @@ public class AlienManager
 			addAlien(a1);
 		}
 
-		
+
 		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
@@ -80,7 +80,7 @@ public class AlienManager
 			a3.setY(yStart);
 			addAlien(a3);
 		}
-		
+
 		yStart+=ySpacing;
 		for(int x=0; x<=10; x++)
 		{
@@ -124,7 +124,7 @@ public class AlienManager
 	}
 
 
-	private void inceAlienImage()
+	private void incAlienImage()
 	{
 		for (int i = 0; i < alienList.size(); i++)
 		{
@@ -135,57 +135,53 @@ public class AlienManager
 	private int getMaxAlienX()
 	{
 
-		farRightAlien.setX(-2);
 
-		for(Alien Alien: alienList)
+		for (int i = 1; i< alienList.size(); i++)
 		{
-			if(Alien.getX()>farRightAlien.getX())
+			if (alienList.get(i-1).getX()>alienList.get(i).getX())
 			{
-				farRightAlien=Alien;
+				alienMaxX = alienList.get(i-1).getX();
 			}
 		}
 
-		alienMaxX  = farRightAlien.getX();
 		return alienMaxX;
 	}
 
 	private int getMinAlienX()
 	{
 
-		farLeftAlien.setX(702);
-
-		for(Alien Alien: alienList)
+		for (int i = 1; i< alienList.size(); i++)
 		{
-			if(Alien.getX()<farLeftAlien.getX())
+			if (alienList.get(i-1).getX()<alienList.get(i).getX())
 			{
-				farLeftAlien=Alien;
+				alienMinX = alienList.get(i-1).getX();
 			}
 		}
-		alienMinX =  farLeftAlien.getX();
-		return alienMinX;
+
+		return alienMaxX;
 	}
 
-	private void moveAliensSideways(int increment)
+	private void moveAliensSideways()
 	{
 		for (int i = 0; i < alienList.size(); i++)
 		{
 			Alien temp = alienList.get(i);
 			int X = temp.getX();
-			X+=increment;
+			X+=rowSpacing;
 			temp.setX(X);
-			alienList.set(i, temp);
+
 		}
 	}
-	
+
 	private void moveAliensDown()
 	{
 		for (int i = 0; i < alienList.size(); i++)
 		{
 			Alien temp = alienList.get(i);
 			int Y = temp.getY();
-			Y+=50;
+			Y+=rowSpacing;
 			temp.setY(Y);
-			alienList.set(i, temp);
+
 		}
 	}
 
