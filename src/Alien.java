@@ -5,13 +5,13 @@ import java.util.ArrayList;
 public class Alien extends GameObject
 {
 	private  ArrayList<Image> alienList= new ArrayList<Image>();
-	private MyTimer stepTimer = new MyTimer(2000);
+	
 	private static int imageIndex = 0;
 	private Sound sound = new Sound();
 
 	public Alien()
 	{
-		stepTimer.start();
+		
 	}
 	
 	public void incImageIndex()
@@ -35,17 +35,5 @@ public class Alien extends GameObject
 		page.drawImage(alienList.get(imageIndex), getX(), getY(),null);
 	}
 
-	@Override
-	public void update()
-	{
-		super.update();
-
-		if(stepTimer.isExpired())
-		{
-			stepTimer.start();
-			imageIndex++;
-			if(imageIndex >= alienList.size())
-				imageIndex = 0;
-		}
-	}
+	
 }

@@ -14,7 +14,7 @@ public class AlienProjectile extends GameObject
 	public void draw(Graphics page)
 	{
 		page.setColor(Color.red);
-		page.drawRect(getX(), getY(), getProjectileSize(), getProjectileSize());
+		page.drawRect(getX(), getY(), projectileWidth, projectileWidth);
 	}
 	
 	@Override

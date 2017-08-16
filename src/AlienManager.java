@@ -8,7 +8,7 @@ public class AlienManager
 
 	private int alienMaxX;
 	private int alienMinX;
-
+	private MyTimer stepTimer = new MyTimer(alienList.size()*20);
 	private int rowSpacing = 50;
 
 
@@ -107,9 +107,40 @@ public class AlienManager
 
 	public void update()
 	{
-		for(Alien Alien : alienList)
+		if(stepTimer.isExpired())
 		{
-			Alien.update();
+			stepTimer.start();
+			stepTimer.setDelay(alienList.size()*20);
+			incAlienImage();
+
+			boolean moveRight = true;
+
+			while(moveRight)
+			{
+				moveAliensSideways(true);
+
+				if(getMaxAlienX() >= GameObject.getGameWidth())
+				{
+					moveAliensDown();
+					moveRight = false;
+
+				}
+			}
+
+			while(!moveRight)
+			{
+				moveAliensSideways(false);
+
+				if(getMinAlienX() <= GameObject.getGameWidth())
+				{
+					moveAliensDown();
+					moveRight = true;
+					
+				}
+			}
+
+
+
 		}
 	}
 
@@ -161,17 +192,34 @@ public class AlienManager
 		return alienMaxX;
 	}
 
-	private void moveAliensSideways()
+	private void moveAliensSideways(boolean direction)
 	{
-		for (int i = 0; i < alienList.size(); i++)
+		if (direction == true)//move right
 		{
-			Alien temp = alienList.get(i);
-			int X = temp.getX();
-			X+=rowSpacing;
-			temp.setX(X);
+			for (int i = 0; i < alienList.size(); i++)
+			{
+				Alien temp = alienList.get(i);
+				int X = temp.getX();
+				X+=rowSpacing;
+				temp.setX(X);
 
+			}
+		}
+
+		if (direction == false)//move left
+		{
+			for (int i = 0; i < alienList.size(); i++)
+			{
+				Alien temp = alienList.get(i);
+				int X = temp.getX();
+				X-=rowSpacing;
+				temp.setX(X);
+
+			}
 		}
 	}
+
+
 
 	private void moveAliensDown()
 	{
