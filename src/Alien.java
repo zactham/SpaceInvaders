@@ -5,9 +5,7 @@ import java.util.ArrayList;
 public class Alien extends GameObject
 {
 	private  ArrayList<Image> alienList= new ArrayList<Image>();
-	
 	private static int imageIndex = 0;
-	private Sound sound = new Sound();
 
 	public Alien()
 	{
