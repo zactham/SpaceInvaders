@@ -13,7 +13,7 @@ public class AlienManager
 	private int alienMovement = 10;
 	private int alienWidth = 20;
 
-	private boolean soundSwap = true;
+	private int soundSwap = 1;
 
 	private Sound sound = new Sound();
 
@@ -146,11 +146,18 @@ public class AlienManager
 				moveRight = true;
 
 			}
-			if(soundSwap)
+			if(soundSwap == 1)
 				sound.play("sounds/fastinvader1.wav");
-			else
+			else if(soundSwap == 2)
 				sound.play("sounds/fastinvader2.wav");
-			soundSwap = !soundSwap;
+			else if(soundSwap == 3)
+				sound.play("sounds/fastinvader3.wav");
+			else if(soundSwap == 4)
+				sound.play("sounds/fastinvader4.wav");
+			
+			soundSwap++;
+			if(soundSwap >4)
+				soundSwap = 1;
 		}
 	}
 
