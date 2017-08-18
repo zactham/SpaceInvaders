@@ -16,10 +16,14 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private Sound sound;
 	private int score = 0;
 	private boolean end;
+	
+	private boolean UFOAppearance = false;
 
 	private Player player;
 
 	private Barricade[] barricade = new Barricade[4];
+	
+	public static UFO u = new UFO();
 
 	private InputManager inputManager;
 	private AlienManager alienManager;
@@ -47,7 +51,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		alienManager = new AlienManager();
 
 		setPreferredSize(new Dimension(gameboardWidth, gameboardHeight));
-		
+
 		GameObject.setGameHeight(gameboardHeight);
 		GameObject.setGameWidth(gameboardWidth);
 
@@ -125,6 +129,18 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		alienManager.update();
 		checkKeys();
+		/*
+		int randomNum = (int) (Math.random()*10 +1);
+		
+		if(randomNum == 1 && !UFOAppearance)
+		{
+			UFOAppearance = true;
+			
+			initUFOs();
+		}
+		*/
+		
+		initUFOs();
 	}
 
 	public void drawGame(Graphics page)
@@ -142,21 +158,31 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void initBarricades()
 	{
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//barricade.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
-		
+
 		for(int x=0; x<=3; x++)
 		{
 			Barricade b = new Barricade();
 			b.setX(((gameboardWidth/4-10) * x+1) + b.getStandardSize());
 			b.setY(player.getY()-100);
 			barricade[x] = b;
-					
+
 			barricade[x].setImage(img);
 		}
 	}
 
+	public void initUFOs()
+	{
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//UFO.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+
+		u.setX(gameboardWidth + u.getStandardSize());
+		u.setY(AlienManager.getMaxAlienY() - AlienManager.getRowspacing());		
+		u.setImage(img);
+
+	}
 
 
-	
+
+
 
 	public void playSoundEffect()
 	{
@@ -258,7 +284,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if(inputManager.getKeyPressed(KeyEvent.VK_SPACE))
 		{
 			player.fire();
-			
+
 		}
 
 

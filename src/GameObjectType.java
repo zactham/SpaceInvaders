@@ -10,5 +10,6 @@ public enum GameObjectType
 	Barricade, 
 	SpaceShip, 
 	PlayerProjectile,
-	AlienProjectile
+	AlienProjectile,
+	UFO
 }

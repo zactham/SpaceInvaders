@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class AlienManager 
 {
-	private ArrayList<Alien> alienList= new ArrayList<Alien>();
+	private static ArrayList<Alien> alienList= new ArrayList<Alien>();
 
 	private int alienMaxX;
 	private int alienMinX;
+	private static int alienMaxY;
+	private int alienMinY;
 	private MyTimer stepTimer = new MyTimer(alienList.size()*20);
-	private int rowSpacing = 50;
+	private static int rowSpacing = 50;
 	private int alienMovement = 10;
-	private int alienWidth = 20;
+	private static int alienWidth = 20;
 
-	private int soundSwap = 1;
+	private int soundSwap = 0;
 
 	private Sound sound = new Sound();
 
@@ -122,22 +124,22 @@ public class AlienManager
 			incAlienImage();
 
 
-			//delete true and false
 			if(moveRight)
 			{
-				moveAliensSideways(true);
+				moveAliensSideways(moveRight);
 			}
 
 
 			if(getMaxAlienX() >= GameObject.getGameWidth())
 			{
 				moveAliensDown();
+				
 				moveRight = false;
 			}
 
 			if(!moveRight)
 			{
-				moveAliensSideways(false);
+				moveAliensSideways(moveRight);
 			}
 
 			if(getMinAlienX() <= 0)
@@ -146,18 +148,17 @@ public class AlienManager
 				moveRight = true;
 
 			}
-			if(soundSwap == 1)
+			if(soundSwap == 0)
 				sound.play("sounds/fastinvader1.wav");
-			else if(soundSwap == 2)
+			else if(soundSwap == 1)
 				sound.play("sounds/fastinvader2.wav");
-			else if(soundSwap == 3)
+			else if(soundSwap == 2)
 				sound.play("sounds/fastinvader3.wav");
-			else if(soundSwap == 4)
+			else if(soundSwap == 3)
 				sound.play("sounds/fastinvader4.wav");
-			
+
 			soundSwap++;
-			if(soundSwap >4)
-				soundSwap = 1;
+			soundSwap%=4;
 		}
 	}
 
@@ -179,6 +180,11 @@ public class AlienManager
 			alienList.get(i).incImageIndex();
 		}
 	}
+	
+	public static int getRowspacing()
+	{
+		return rowSpacing;
+	}
 
 	private int getMaxAlienX()
 	{
@@ -196,6 +202,48 @@ public class AlienManager
 		alienMaxX =  temp.getX() + alienWidth;
 		//System.out.println(alienMaxX);
 		return alienMaxX ;
+
+
+	}
+
+	
+	private int getMinAlienY()
+	{
+		alienMinY = 0;
+
+		Alien temp = alienList.get(0);
+
+		for (int i = 1; i< alienList.size(); i++)
+		{
+			if (alienList.get(i).getY()<temp.getY())
+			{
+				temp = alienList.get(i);
+			}
+		}
+		alienMinY =  temp.getY();
+		//System.out.println(alienMinX);
+		return alienMinY ;
+
+
+	}
+	
+	
+	public static int getMaxAlienY()
+	{
+		alienMaxY = 0;
+		
+		Alien temp = alienList.get(0);
+
+		for (int i = 1; i< alienList.size(); i++)
+		{
+			if (alienList.get(i).getY()>temp.getY())
+			{
+				temp = alienList.get(i);
+			}
+		}
+		alienMaxY =  temp.getY() + alienWidth;
+		//System.out.println(alienMaxX);
+		return alienMaxY ;
 
 
 	}
@@ -221,22 +269,14 @@ public class AlienManager
 
 	private void moveAliensSideways(boolean direction)
 	{
-		if (direction == true)//move right
+		for (int i = 0; i < alienList.size(); i++)
 		{
-			for (int i = 0; i < alienList.size(); i++)
-			{
-				int X = alienList.get(i).getX();
+			int X = alienList.get(i).getX();
+			if(direction)
 				alienList.get(i).setX(X+alienMovement);
-			}
-		}
-
-		if (direction == false)//move left
-		{
-			for (int i = 0; i < alienList.size(); i++)
-			{
-				int X = alienList.get(i).getX();
+			else
 				alienList.get(i).setX(X-alienMovement);
-			}
+
 		}
 	}
 
