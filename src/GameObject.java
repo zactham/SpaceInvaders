@@ -10,6 +10,8 @@ public class GameObject
 	protected static final int projectileWidth = 5;
 	protected static final int projectileHeight = 18;
 	
+	private static final int ufoSize = 40;
+	
 	
 
 	private static int gameWidth = 0;
@@ -40,6 +42,11 @@ public class GameObject
 	public static int getStandardSize()
 	{
 		return standardSize;
+	}
+	
+	public static int getufoSize()
+	{
+		return ufoSize;
 	}
 
 	public static int getGameWidth()

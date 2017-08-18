@@ -1,4 +1,5 @@
 import java.io.File;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -25,6 +26,11 @@ public class Sound
 	public void resume() 		
 	{
 		audioClip.start(); 
+	}
+	
+	public void loop()
+	{
+		audioClip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 
 	public void play(String audioFilePath)

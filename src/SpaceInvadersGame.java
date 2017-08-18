@@ -16,14 +16,14 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private Sound sound;
 	private int score = 0;
 	private boolean end;
-	
+
 	private boolean UFOAppearance = false;
 
 	private Player player;
 
 	private Barricade[] barricade = new Barricade[4];
-	
-	public static UFO u = new UFO();
+
+	public static UFO ufo = new UFO();
 
 	private InputManager inputManager;
 	private AlienManager alienManager;
@@ -72,6 +72,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		initBarricades();
 
 		alienManager.init();
+
+		initUFOs();
 
 		//Sets the speed of the game for each mode
 		if (level == 1)		// easy
@@ -129,18 +131,31 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		alienManager.update();
 		checkKeys();
-		/*
-		int randomNum = (int) (Math.random()*10 +1);
-		
+
+		int randomNum = (int) (Math.random()*1000 +1);
+
 		if(randomNum == 1 && !UFOAppearance)
 		{
 			UFOAppearance = true;
-			
 			initUFOs();
+			ufo.getSound().play("sounds/ufo_lowpitch.wav");
+			ufo.getSound().loop();
 		}
-		*/
-		
-		initUFOs();
+
+		if(UFOAppearance)
+		{
+			ufo.update();
+		}
+
+
+
+		//ufo.update();
+
+		if (ufo.getX() <= 0 - GameObject.getufoSize())
+		{
+			UFOAppearance = false;
+			ufo.getSound().stop();
+		}
 	}
 
 	public void drawGame(Graphics page)
@@ -153,6 +168,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		}
 
 		alienManager.draw(page);
+
+
+		if(UFOAppearance)
+			ufo.draw(page);
 	}
 
 	public void initBarricades()
@@ -172,22 +191,16 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void initUFOs()
 	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(40, 40, Image.SCALE_DEFAULT);
 
-		u.setX(gameboardWidth + u.getStandardSize());
-		u.setY(AlienManager.getMaxAlienY() - AlienManager.getRowspacing());		
-		u.setImage(img);
+		ufo.setX(gameboardWidth-GameObject.getufoSize());
+		ufo.setY(AlienManager.getMinAlienY() - AlienManager.getRowspacing());		
+		ufo.setImage(img);
+
 
 	}
 
 
-
-
-
-	public void playSoundEffect()
-	{
-		//sound.play("SMACK Sound Effect.wav");
-	}
 
 	// Centers the window
 	public void centerWindow()

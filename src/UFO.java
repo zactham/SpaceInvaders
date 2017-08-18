@@ -6,17 +6,9 @@ public class UFO extends GameObject
 {
 	private Image ufoImage;
 
-	private int movement = 5;
-
-	private boolean moveRight = true;
-
-	private int ufoX = SpaceInvadersGame.u.getX();
-	private int ufoY = SpaceInvadersGame.u.getY();
+	private int movement = 2;
 
 	Sound sound = new Sound();
-
-
-
 
 	@Override
 	public GameObjectType getType()
@@ -27,8 +19,6 @@ public class UFO extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
-		page.setColor(Color.BLUE);
-
 		page.drawImage(ufoImage, getX(), getY(),null);
 	}
 
@@ -41,36 +31,20 @@ public class UFO extends GameObject
 	{
 		return ufoImage;
 	}
+	
+	public Sound getSound()
+	{
+		return sound;
+	}
 
 	@Override
 	public void update()
 	{
-		if(moveRight)
-			moveUFOsideways(moveRight);
-
-
-		if(ufoX + 10 >= GameObject.getGameWidth())
-			moveRight = false;
-
-		if(!moveRight)
-			moveUFOsideways(moveRight);
-
-		if(ufoX <= 0)
-			moveRight = true;
-
-		sound.play("sounds/ufo_lowpitch.wav");
-
-
+		moveUFOsideways();
 	}
 
-	private void moveUFOsideways(boolean direction)
+	private void moveUFOsideways()
 	{
-		int X = SpaceInvadersGame.u.getX();
-		if(direction)
-			SpaceInvadersGame.u.setX(X+movement);
-		else
-			SpaceInvadersGame.u.setX(X-movement);
-
-
+		setX(getX()-movement);
 	}
 }

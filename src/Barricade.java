@@ -15,9 +15,7 @@ public class Barricade extends GameObject
 	
 	@Override
 	public void draw(Graphics page)
-	{
-		page.setColor(Color.BLUE);
-		
+	{	
 		page.drawImage(barricadeImage, getX(), getY(),null);
 	}
 	
