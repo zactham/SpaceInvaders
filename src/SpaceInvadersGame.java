@@ -134,7 +134,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		int randomNum = (int) (Math.random()*1000 +1);
 
-		if(randomNum == 1 && !UFOAppearance)
+		if((randomNum == 1 || inputManager.getKeyPressed(KeyEvent.VK_U)== true) && !UFOAppearance)
 		{
 			UFOAppearance = true;
 			initUFOs();
@@ -191,10 +191,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void initUFOs()
 	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(40, 40, Image.SCALE_DEFAULT);
-
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(GameObject.getufoSize(), GameObject.getufoSize()/2, Image.SCALE_DEFAULT);
+ 
 		ufo.setX(gameboardWidth-GameObject.getufoSize());
-		ufo.setY(AlienManager.getMinAlienY() - AlienManager.getRowspacing());		
+		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 		ufo.setImage(img);
 
 

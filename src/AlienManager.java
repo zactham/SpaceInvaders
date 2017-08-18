@@ -8,12 +8,12 @@ public class AlienManager
 
 	private int alienMaxX;
 	private int alienMinX;
-	private static int alienMaxY;
+	private int alienMaxY;
 	private int alienMinY;
 	private MyTimer stepTimer = new MyTimer(alienList.size()*20);
-	private static int rowSpacing = 50;
+	private int rowSpacing = 50;
 	private int alienMovement = 10;
-	private static int alienWidth = 20;
+	private int alienWidth = 20;
 
 	private int soundSwap = 0;
 
@@ -181,7 +181,7 @@ public class AlienManager
 		}
 	}
 	
-	public static int getRowspacing()
+	public int getRowspacing()
 	{
 		return rowSpacing;
 	}
@@ -207,7 +207,7 @@ public class AlienManager
 	}
 
 	
-	private int getMinAlienY()
+	public int getMinAlienY()
 	{
 		alienMinY = 0;
 
@@ -228,7 +228,7 @@ public class AlienManager
 	}
 	
 	
-	public static int getMaxAlienY()
+	public int getMaxAlienY()
 	{
 		alienMaxY = 0;
 		

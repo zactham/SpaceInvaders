@@ -9,8 +9,7 @@ public class GameObject
 	private static final int standardSize = 75;
 	protected static final int projectileWidth = 5;
 	protected static final int projectileHeight = 18;
-	
-	private static final int ufoSize = 40;
+	public static final int ufoSize = 40;
 	
 	
 
