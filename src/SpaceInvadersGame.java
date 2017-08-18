@@ -172,7 +172,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void initUFOs()
 	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//UFO.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
 
 		u.setX(gameboardWidth + u.getStandardSize());
 		u.setY(AlienManager.getMaxAlienY() - AlienManager.getRowspacing());		
