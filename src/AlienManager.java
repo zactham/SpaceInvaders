@@ -133,7 +133,7 @@ public class AlienManager
 			if(getMaxAlienX() >= GameObject.getGameWidth())
 			{
 				moveAliensDown();
-				
+
 				moveRight = false;
 			}
 
@@ -148,14 +148,23 @@ public class AlienManager
 				moveRight = true;
 
 			}
-			if(soundSwap == 0)
+
+
+			switch (soundSwap)
+			{
+			case 0: 
 				sound.play("sounds/fastinvader1.wav");
-			else if(soundSwap == 1)
+				break;
+			case 1: 
 				sound.play("sounds/fastinvader2.wav");
-			else if(soundSwap == 2)
+				break;
+			case 2:
 				sound.play("sounds/fastinvader3.wav");
-			else if(soundSwap == 3)
+				break;
+			case 3: 
 				sound.play("sounds/fastinvader4.wav");
+				break;
+			}
 
 			soundSwap++;
 			soundSwap%=4;
@@ -180,7 +189,7 @@ public class AlienManager
 			alienList.get(i).incImageIndex();
 		}
 	}
-	
+
 	public int getRowspacing()
 	{
 		return rowSpacing;
@@ -206,7 +215,7 @@ public class AlienManager
 
 	}
 
-	
+
 	public int getMinAlienY()
 	{
 		alienMinY = 0;
@@ -226,12 +235,12 @@ public class AlienManager
 
 
 	}
-	
-	
+
+
 	public int getMaxAlienY()
 	{
 		alienMaxY = 0;
-		
+
 		Alien temp = alienList.get(0);
 
 		for (int i = 1; i< alienList.size(); i++)

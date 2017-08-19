@@ -17,13 +17,13 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private int score = 0;
 	private boolean end;
 
-	private boolean UFOAppearance = false;
+
 
 	private Player player;
 
 	private Barricade[] barricade = new Barricade[4];
 
-	public static UFO ufo = new UFO();
+	private UFO ufo = new UFO();
 
 	private InputManager inputManager;
 	private AlienManager alienManager;
@@ -122,6 +122,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void updateGame()
 	{
+		checkKeys();
+
 		player.update();
 
 		for (int i = 0; i < barricade.length; i++)
@@ -130,32 +132,18 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		}
 
 		alienManager.update();
-		checkKeys();
+
 
 		int randomNum = (int) (Math.random()*1000 +1);
 
-		if((randomNum == 1 || inputManager.getKeyPressed(KeyEvent.VK_U)== true) && !UFOAppearance)
-		{
-			UFOAppearance = true;
-			initUFOs();
-			ufo.getSound().play("sounds/ufo_lowpitch.wav");
-			ufo.getSound().loop();
-		}
+		if((randomNum == 1 || inputManager.getKeyPressed(KeyEvent.VK_U)== true) && !ufo.getVisible())
+			ufo.start();
 
-		if(UFOAppearance)
-		{
+		if(ufo.getVisible())
 			ufo.update();
-		}
-
-
-
-		//ufo.update();
 
 		if (ufo.getX() <= 0 - GameObject.getufoSize())
-		{
-			UFOAppearance = false;
-			ufo.getSound().stop();
-		}
+			ufo.stop();
 	}
 
 	public void drawGame(Graphics page)
@@ -169,9 +157,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		alienManager.draw(page);
 
+		ufo.draw(page);
 
-		if(UFOAppearance)
-			ufo.draw(page);
 	}
 
 	public void initBarricades()
@@ -192,7 +179,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void initUFOs()
 	{
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(GameObject.getufoSize(), GameObject.getufoSize()/2, Image.SCALE_DEFAULT);
- 
+
 		ufo.setX(gameboardWidth-GameObject.getufoSize());
 		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 		ufo.setImage(img);

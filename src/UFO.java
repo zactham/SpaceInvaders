@@ -8,7 +8,9 @@ public class UFO extends GameObject
 
 	private int movement = 2;
 
-	Sound sound = new Sound();
+	private Sound sound = new Sound();
+
+	private boolean isVisible = false;
 
 	@Override
 	public GameObjectType getType()
@@ -19,7 +21,13 @@ public class UFO extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
-		page.drawImage(ufoImage, getX(), getY(),null);
+		if(getVisible())
+		{
+			super.draw(page);
+			page.drawImage(ufoImage, getX(), getY(),null);
+		}
+
+
 	}
 
 	public void setImage(Image i)
@@ -31,7 +39,7 @@ public class UFO extends GameObject
 	{
 		return ufoImage;
 	}
-	
+
 	public Sound getSound()
 	{
 		return sound;
@@ -40,6 +48,7 @@ public class UFO extends GameObject
 	@Override
 	public void update()
 	{
+		super.update();
 		moveUFOsideways();
 	}
 
@@ -47,4 +56,29 @@ public class UFO extends GameObject
 	{
 		setX(getX()-movement);
 	}
+
+	public void setVisible(boolean v)
+	{
+		isVisible = v;
+	}
+
+	public boolean getVisible()
+	{
+		return isVisible;
+	}
+
+	public void start()
+	{
+		setVisible(true);
+		getSound().play("sounds/ufo_lowpitch.wav");
+		getSound().loop(true);
+	}
+
+	public void stop()
+	{
+		setVisible(false);
+		getSound().stop();
+	}
+
+
 }
