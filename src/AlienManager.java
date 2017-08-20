@@ -15,6 +15,7 @@ public class AlienManager
 	private int alienMovement = 10;
 	private int alienWidth = 20;
 
+
 	private int soundSwap = 0;
 
 	private Sound sound = new Sound();
@@ -54,6 +55,7 @@ public class AlienManager
 			a1.addImage(alien1Image2);
 			a1.setX(xStart+(xSpacing*x));
 			a1.setY(yStart);
+			a1.createBounds(a1.getX(), a1.getY(),alienSize,alienSize);
 			addAlien(a1);
 		}
 
@@ -66,6 +68,7 @@ public class AlienManager
 			a2.addImage(alien2Image2);
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
+			a2.createBounds(a2.getX(), a2.getY(),alienSize,alienSize);
 			addAlien(a2);
 		}
 
@@ -77,6 +80,7 @@ public class AlienManager
 			a2.addImage(alien2Image2);
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
+			a2.createBounds(a2.getX(), a2.getY(),alienSize,alienSize);
 			addAlien(a2);
 		}
 
@@ -88,6 +92,7 @@ public class AlienManager
 			a3.addImage(alien3Image2);
 			a3.setX(xStart+(xSpacing*x));
 			a3.setY(yStart);
+			a3.createBounds(a3.getX(), a3.getY(),alienSize,alienSize);
 			addAlien(a3);
 		}
 
@@ -100,6 +105,7 @@ public class AlienManager
 			a3.addImage(alien3Image2);
 			a3.setX(xStart+(xSpacing*x));
 			a3.setY(yStart);
+			a3.createBounds(a3.getX(), a3.getY(),alienSize,alienSize);
 			addAlien(a3);
 		}
 
@@ -168,6 +174,12 @@ public class AlienManager
 
 			soundSwap++;
 			soundSwap%=4;
+
+		}
+
+		for(int i = 0; i <alienList.size(); i++)
+		{
+			alienList.get(i).updateBounds();
 		}
 	}
 

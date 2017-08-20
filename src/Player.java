@@ -20,6 +20,7 @@ public class Player extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
+		super.draw(page);
 		page.setColor(Color.red);
 		page.drawImage(playerImage, getX(), getY(), null);
 		if(!(shot==null))
@@ -72,6 +73,8 @@ public class Player extends GameObject
 				shot=null;
 			}
 		}
+		
+		updateBounds();
 	}
 
 	public void fire()
@@ -88,6 +91,8 @@ public class Player extends GameObject
 			
 			shot.setY(y);
 			sound.play("sounds//playerShoot.wav");
+			
+			shot.createBounds(shot.getX(), shot.getY(), projectileWidth,projectileHeight);
 		}
 	}
 }

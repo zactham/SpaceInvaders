@@ -63,11 +63,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		JOptionPane.showMessageDialog(start, "Game Instructions");
 
-		player = new Player();
-		Image playerImg = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//player.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
-		player.setImage(playerImg);
-		player.setX(gameboardWidth/2);
-		player.setY(gameboardHeight-100);
+		initPlayer();
 
 		initBarricades();
 
@@ -139,8 +135,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if((randomNum == 1 || inputManager.getKeyPressed(KeyEvent.VK_U)== true) && !ufo.getVisible())
 			ufo.start();
 
-		if(ufo.getVisible())
+		
 			ufo.update();
+
 
 		if (ufo.getX() <= 0 - GameObject.getufoSize())
 			ufo.stop();
@@ -160,10 +157,20 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		ufo.draw(page);
 
 	}
+	
+	public void initPlayer()
+	{
+		Image playerImg = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//player.png").getScaledInstance(GameObject.getStandardSize(), GameObject.getStandardSize(), Image.SCALE_DEFAULT);
+		player = new Player();	
+		player.setImage(playerImg);
+		player.setX(gameboardWidth/2);
+		player.setY(gameboardHeight-100);
+		player.createBounds(player.getX(),player.getY(),player.getStandardSize(), player.getStandardSize());
+	}
 
 	public void initBarricades()
 	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//barricade.png").getScaledInstance(75, 75, Image.SCALE_DEFAULT);
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//barricade.png").getScaledInstance(GameObject.getStandardSize(), GameObject.getStandardSize(), Image.SCALE_DEFAULT);
 
 		for(int x=0; x<=3; x++)
 		{
@@ -171,8 +178,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			b.setX(((gameboardWidth/4-10) * x+1) + b.getStandardSize());
 			b.setY(player.getY()-100);
 			barricade[x] = b;
-
 			barricade[x].setImage(img);
+			barricade[x].createBounds(b.getX(),b.getY(),b.getStandardSize(),b.getStandardSize());
 		}
 	}
 
@@ -183,6 +190,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		ufo.setX(gameboardWidth-GameObject.getufoSize());
 		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 		ufo.setImage(img);
+		ufo.createBounds(ufo.getX(), ufo.getY(), GameObject.getufoSize(), GameObject.getufoSize()/2);
 
 
 	}

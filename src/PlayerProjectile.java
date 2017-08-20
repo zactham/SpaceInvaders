@@ -24,5 +24,6 @@ public class PlayerProjectile extends GameObject
 	{
 		super.update();
 		this.y-=speed;
+		updateBounds();
 	}
 }

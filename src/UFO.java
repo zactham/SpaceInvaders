@@ -48,8 +48,14 @@ public class UFO extends GameObject
 	@Override
 	public void update()
 	{
-		super.update();
-		moveUFOsideways();
+		if(getVisible())
+		{
+			super.update();
+			moveUFOsideways();
+			updateBounds();
+		}
+
+
 	}
 
 	private void moveUFOsideways()

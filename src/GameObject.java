@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class GameObject 
 {
@@ -10,8 +12,8 @@ public class GameObject
 	protected static final int projectileWidth = 5;
 	protected static final int projectileHeight = 18;
 	public static final int ufoSize = 40;
-	
-	
+	private Rectangle bounds = null;
+
 
 	private static int gameWidth = 0;
 	private static int gameHeight = 0;
@@ -42,7 +44,7 @@ public class GameObject
 	{
 		return standardSize;
 	}
-	
+
 	public static int getufoSize()
 	{
 		return ufoSize;
@@ -68,13 +70,39 @@ public class GameObject
 		gameHeight = gh;
 	}
 
+	public Rectangle getBounds()
+	{
+		return bounds;
+	}
+
+	public void createBounds(int x, int y, int width, int height)
+	{
+		if(getBounds() == null)
+		{
+			bounds = new Rectangle(x, y, width, height);
+
+		}
+	}
+
+	private void drawBounds(Graphics page)
+	{
+		page.setColor(Color.white);
+		page.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int) bounds.getHeight());
+
+	}
+
+	public void updateBounds()
+	{
+		if (getBounds() != null)
+			bounds.setLocation(x, y);
 
 
-
+		//updateBounds();
+	}
 
 	public void draw (Graphics page)
 	{
-
+		drawBounds(page);
 	}
 
 	public void update()

@@ -16,7 +16,8 @@ public class Barricade extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{	
-		page.drawImage(barricadeImage, getX(), getY(),null);
+		super.draw(page);
+		page.drawImage(barricadeImage, getX(), getY(),null);	
 	}
 	
 	public void setImage(Image i)
@@ -33,5 +34,7 @@ public class Barricade extends GameObject
 	public void update()
 	{
 		super.update();
+		
+		updateBounds();
 	}
 }
