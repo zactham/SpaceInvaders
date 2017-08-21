@@ -86,8 +86,8 @@ public class GameObject
 
 	private void drawBounds(Graphics page)
 	{
-		page.setColor(Color.white);
-		page.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int) bounds.getHeight());
+		//page.setColor(Color.white);
+		//page.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int) bounds.getHeight());
 
 	}
 
