@@ -32,6 +32,10 @@ public class Sound
 	{
 		if(play)
 			audioClip.loop(Clip.LOOP_CONTINUOUSLY);
+		if (audioClip != null && audioClip.isRunning())
+		{
+		    audioClip.stop();
+		}
 	}
 
 	public void play(String audioFilePath)

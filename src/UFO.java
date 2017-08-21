@@ -11,6 +11,8 @@ public class UFO extends GameObject
 	private Sound sound = new Sound();
 
 	private boolean isVisible = false;
+	
+	int i = 0;
 
 	@Override
 	public GameObjectType getType()
@@ -48,14 +50,13 @@ public class UFO extends GameObject
 	@Override
 	public void update()
 	{
+
 		if(getVisible())
 		{
 			super.update();
 			moveUFOsideways();
 			updateBounds();
 		}
-
-
 	}
 
 	private void moveUFOsideways()

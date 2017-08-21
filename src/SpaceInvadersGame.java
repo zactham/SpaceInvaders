@@ -21,6 +21,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	private Player player;
 
+	private AlienManager am = new AlienManager();
+
 	private Barricade[] barricade = new Barricade[4];
 
 	private UFO ufo = new UFO();
@@ -135,12 +137,14 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if((randomNum == 1 || inputManager.getKeyPressed(KeyEvent.VK_U)== true) && !ufo.getVisible())
 			ufo.start();
 
-		
-			ufo.update();
+
+		ufo.update();
 
 
 		if (ufo.getX() <= 0 - GameObject.getufoSize())
 			ufo.stop();
+
+		checkCollisions();
 	}
 
 	public void drawGame(Graphics page)
@@ -157,7 +161,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		ufo.draw(page);
 
 	}
-	
+
 	public void initPlayer()
 	{
 		Image playerImg = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//player.png").getScaledInstance(GameObject.getStandardSize(), GameObject.getStandardSize(), Image.SCALE_DEFAULT);
@@ -191,6 +195,25 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 		ufo.setImage(img);
 		ufo.createBounds(ufo.getX(), ufo.getY(), GameObject.getufoSize(), GameObject.getufoSize()/2);
+	}
+
+
+	public void checkCollisions()
+	{
+
+		if(player.getShot() != null)
+		{
+			for(int i = am.getNumAliens() - 1; i >-1; i--)
+			{
+				if(am.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
+				{
+					am.removeAlien(am.getAlien(i));
+					player.removeShot();
+					sound.play("sounds/alien_hit.wav");
+					break;
+				}
+			}
+		}
 
 
 	}

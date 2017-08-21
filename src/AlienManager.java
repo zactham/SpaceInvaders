@@ -192,6 +192,11 @@ public class AlienManager
 	{
 		alienList.remove(a);
 	}
+	
+	public Alien getAlien(int i)
+	{
+		return alienList.get(i);
+	}
 
 
 	private void incAlienImage()
