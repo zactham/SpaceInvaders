@@ -29,6 +29,18 @@ public class Player extends GameObject
 		}
 	}
 	
+	public PlayerProjectile getShot()
+	{
+		return shot;
+	}
+	
+	public void removeShot()
+	{
+		shot = null;
+	}
+	
+	
+	
 	public void setImage(Image i)
 	{
 		playerImage=i;
