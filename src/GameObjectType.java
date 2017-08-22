@@ -11,5 +11,6 @@ public enum GameObjectType
 	SpaceShip, 
 	PlayerProjectile,
 	AlienProjectile,
-	UFO
+	UFO,
+	Explosion
 }

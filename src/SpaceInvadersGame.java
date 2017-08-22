@@ -21,9 +21,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	private Player player;
 
-	private AlienManager am = new AlienManager();
+
 
 	private Barricade[] barricade = new Barricade[4];
+
+	private Explosion exp = new Explosion();
 
 	private UFO ufo = new UFO();
 
@@ -68,6 +70,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		initPlayer();
 
 		initBarricades();
+
+		initExplosion();
 
 		alienManager.init();
 
@@ -160,6 +164,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		ufo.draw(page);
 
+		exp.draw(page);
+
 	}
 
 	public void initPlayer()
@@ -187,6 +193,17 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		}
 	}
 
+	public void initExplosion()
+	{
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//explosion.png").getScaledInstance(GameObject.getStandardSize(), GameObject.getStandardSize(), Image.SCALE_DEFAULT);
+		exp.setVisible(false);
+		exp.setImage(img);
+		exp.createBounds(exp.getX(), exp.getY(), GameObject.getExplosionSize(), GameObject.getExplosionSize());
+
+
+
+	}
+
 	public void initUFOs()
 	{
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//ufo.png").getScaledInstance(GameObject.getufoSize(), GameObject.getufoSize()/2, Image.SCALE_DEFAULT);
@@ -203,19 +220,28 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		if(player.getShot() != null)
 		{
-			for(int i = am.getNumAliens() - 1; i >-1; i--)
+			for(int i = alienManager.getNumAliens() - 1; i >-1; i--)
 			{
-				if(am.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
+				if(alienManager.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
 				{
-					am.removeAlien(am.getAlien(i));
+					alienManager.removeAlien(alienManager.getAlien(i));
 					player.removeShot();
 					sound.play("sounds/alien_hit.wav");
+					alienHit(alienManager.getAlien(i));
+					
 					break;
 				}
 			}
 		}
-
-
+	}
+	
+	public void alienHit(Alien a)
+	{
+		exp.setVisible(true);
+		exp.setX(a.getX());
+		exp.setY(a.getY());
+		//yeah ik this stuff can go in start but i like it here
+		exp.start();
 	}
 
 

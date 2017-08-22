@@ -12,6 +12,8 @@ public class GameObject
 	protected static final int projectileWidth = 5;
 	protected static final int projectileHeight = 18;
 	public static final int ufoSize = 40;
+	
+	public static final int expSize = 20;
 	private Rectangle bounds = null;
 
 
@@ -48,6 +50,11 @@ public class GameObject
 	public static int getufoSize()
 	{
 		return ufoSize;
+	}
+	
+	public static int getExplosionSize()
+	{
+		return expSize;
 	}
 
 	public static int getGameWidth()

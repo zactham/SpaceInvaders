@@ -1,23 +1,20 @@
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
-public class UFO extends GameObject
+public class Explosion extends GameObject
 {
-	private Image ufoImage;
+	private Image explosionImage;
 
-	private int movement = 2;
+	private boolean isVisible = false;
 
 	private Sound sound = new Sound();
 
-	private boolean isVisible = false;
-	
-	int i = 0;
+	private MyTimer timer = new MyTimer(1000);
 
 	@Override
 	public GameObjectType getType()
 	{
-		return GameObjectType.UFO;
+		return GameObjectType.Explosion;
 	}
 
 	@Override
@@ -26,7 +23,7 @@ public class UFO extends GameObject
 		if(getVisible())
 		{
 			super.draw(page);
-			page.drawImage(ufoImage, getX(), getY(),null);
+			page.drawImage(explosionImage, getX(), getY(),null);
 		}
 
 
@@ -34,12 +31,12 @@ public class UFO extends GameObject
 
 	public void setImage(Image i)
 	{
-		ufoImage=i;
+		explosionImage=i;
 	}
 
 	public Image getImage()
 	{
-		return ufoImage;
+		return explosionImage;
 	}
 
 	public Sound getSound()
@@ -50,22 +47,22 @@ public class UFO extends GameObject
 	@Override
 	public void update()
 	{
+		setVisible(timer.isExpired());
+		
 		if(getVisible())
 		{
 			super.update();
-			moveUFOsideways();
 			updateBounds();
 		}
-	}
-
-	private void moveUFOsideways()
-	{
-		setX(getX()-movement);
+		
+		
+		
 	}
 
 	public void setVisible(boolean v)
 	{
 		isVisible = v;
+		
 	}
 
 	public boolean getVisible()
@@ -75,16 +72,18 @@ public class UFO extends GameObject
 
 	public void start()
 	{
+		
 		setVisible(true);
-		getSound().play("sounds/ufo_lowpitch.wav");
-		getSound().loop(true);
+		getSound().play("sounds/explosion.wav");
+		
 	}
 
 	public void stop()
 	{
 		setVisible(false);
-		getSound().stop();
 	}
 
 
 }
+
+
