@@ -47,16 +47,13 @@ public class Explosion extends GameObject
 	@Override
 	public void update()
 	{
-		setVisible(timer.isExpired());
+		setVisible(!timer.isExpired());
 		
 		if(getVisible())
 		{
 			super.update();
 			updateBounds();
 		}
-		
-		
-		
 	}
 
 	public void setVisible(boolean v)
@@ -72,7 +69,7 @@ public class Explosion extends GameObject
 
 	public void start()
 	{
-		
+		timer.setDelay(1000);
 		setVisible(true);
 		getSound().play("sounds/explosion.wav");
 		
