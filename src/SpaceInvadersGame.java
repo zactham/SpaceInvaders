@@ -228,11 +228,31 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 					player.removeShot();
 					sound.play("sounds/alien_hit.wav");
 					alienHit(alienManager.getAlien(i));
-					
+					increaseScore(alienManager.getAlien(i));
+					break;
+				}
+				
+				if(ufo.getBounds().intersects(player.getShot().getBounds()))
+				{
+					ufo.setVisible(false);
+					player.removeShot();
+					sound.play("sounds/alien_hit.wav");
+					ufoHit(ufo);
+					score+=100;
 					break;
 				}
 			}
 		}
+	}
+	
+	public void increaseScore(Alien a)
+	{
+		if (a.getType() == GameObjectType.Alien1)
+			score+=10;
+		if (a.getType() == GameObjectType.Alien2)
+			score+=20;
+		if (a.getType() == GameObjectType.Alien3)
+			score+=10;
 	}
 	
 	public void alienHit(Alien a)
@@ -242,6 +262,19 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		exp.setY(a.getY());
 		//yeah ik this stuff can go in start but i like it here
 		exp.start();
+		
+		
+	}
+	
+	public void ufoHit(UFO u)
+	{
+		exp.setVisible(true);
+		exp.setX(u.getX());
+		exp.setY(u.getY());
+		//yeah ik this stuff can go in start but i like it here
+		exp.start();
+		
+		
 	}
 
 
