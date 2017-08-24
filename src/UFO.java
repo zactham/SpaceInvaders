@@ -67,8 +67,6 @@ public class UFO extends GameObject
 	{
 		isVisible = v;
 		
-		if(!isVisible)
-			getSound().stop();
 	}
 
 	public boolean getVisible()

@@ -157,6 +157,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		if(alienManager.getNumAliens() == 0)
 			resetAliens();
+
+		exp.update();
 	}
 
 	public void drawGame(Graphics page)
@@ -203,7 +205,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void initExplosion()
 	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//explosion.png").getScaledInstance(GameObject.getStandardSize(), GameObject.getStandardSize(), Image.SCALE_DEFAULT);
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//explosion.png").getScaledInstance(GameObject.getStandardSize()-30, GameObject.getStandardSize()-30, Image.SCALE_DEFAULT);
 		exp.setVisible(false);
 		exp.setImage(img);
 		exp.createBounds(exp.getX(), exp.getY(), GameObject.getExplosionSize(), GameObject.getExplosionSize());
@@ -218,8 +220,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 		ufo.setImage(img);
 		ufo.createBounds(ufo.getX(), ufo.getY(), GameObject.getufoSize(), GameObject.getufoSize()/2);
+		resetufoPos();
 	}
-	
+
 	public void initAlienProjectile()
 	{
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//alienShot.png").getScaledInstance(GameObject.getufoSize(), GameObject.getufoSize()/2, Image.SCALE_DEFAULT);
@@ -259,7 +262,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 				if(ufo.getBounds().intersects(player.getShot().getBounds()))
 				{
-					ufo.setVisible(false);
+					ufo.stop();
 					player.removeShot();
 					sound.play("sounds/alien_hit.wav");
 					ufoHit(ufo);
