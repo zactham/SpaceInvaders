@@ -78,6 +78,7 @@ public class UFO extends GameObject
 		setVisible(true);
 		getSound().play("sounds/ufo_lowpitch.wav");
 		getSound().loop(true);
+		
 	}
 
 	public void stop()

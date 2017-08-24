@@ -74,8 +74,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		initExplosion();
 
 		alienManager.init();
-
+		
 		initUFOs();
+
+	
 
 		//Sets the speed of the game for each mode
 		if (level == 1)		// easy
@@ -139,8 +141,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		int randomNum = (int) (Math.random()*1000 +1);
 
 		if((randomNum == 1 || inputManager.getKeyPressed(KeyEvent.VK_U)== true) && !ufo.getVisible())
+		{
 			ufo.start();
-
+			resetufoPos();
+			
+		}
 
 		ufo.update();
 
@@ -203,6 +208,12 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 
 	}
+	
+	public void resetufoPos()
+	{
+		ufo.setX(gameboardWidth-GameObject.getufoSize());
+		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
+	}
 
 	public void initUFOs()
 	{
@@ -224,11 +235,12 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			{
 				if(alienManager.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
 				{
-					alienManager.removeAlien(alienManager.getAlien(i));
+					
 					player.removeShot();
 					sound.play("sounds/alien_hit.wav");
 					alienHit(alienManager.getAlien(i));
 					increaseScore(alienManager.getAlien(i));
+					alienManager.removeAlien(alienManager.getAlien(i));
 					break;
 				}
 				

@@ -69,6 +69,7 @@ public class Explosion extends GameObject
 
 	public void start()
 	{
+		timer.start();
 		timer.setDelay(1000);
 		setVisible(true);
 		getSound().play("sounds/explosion.wav");
