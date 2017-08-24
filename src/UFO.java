@@ -66,6 +66,9 @@ public class UFO extends GameObject
 	public void setVisible(boolean v)
 	{
 		isVisible = v;
+		
+		if(!isVisible)
+			getSound().stop();
 	}
 
 	public boolean getVisible()

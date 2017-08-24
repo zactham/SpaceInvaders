@@ -74,10 +74,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		initExplosion();
 
 		alienManager.init();
-		
+
 		initUFOs();
 
-	
+
 
 		//Sets the speed of the game for each mode
 		if (level == 1)		// easy
@@ -144,7 +144,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		{
 			ufo.start();
 			resetufoPos();
-			
+
 		}
 
 		ufo.update();
@@ -154,6 +154,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			ufo.stop();
 
 		checkCollisions();
+
+		if(alienManager.getNumAliens() == 0)
+			resetAliens();
 	}
 
 	public void drawGame(Graphics page)
@@ -205,14 +208,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		exp.setImage(img);
 		exp.createBounds(exp.getX(), exp.getY(), GameObject.getExplosionSize(), GameObject.getExplosionSize());
 
-
-
-	}
-	
-	public void resetufoPos()
-	{
-		ufo.setX(gameboardWidth-GameObject.getufoSize());
-		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 	}
 
 	public void initUFOs()
@@ -223,6 +218,22 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
 		ufo.setImage(img);
 		ufo.createBounds(ufo.getX(), ufo.getY(), GameObject.getufoSize(), GameObject.getufoSize()/2);
+	}
+	
+	public void initAlienProjectile()
+	{
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//alienShot.png").getScaledInstance(GameObject.getufoSize(), GameObject.getufoSize()/2, Image.SCALE_DEFAULT);
+	}
+
+	public void resetufoPos()
+	{
+		ufo.setX(gameboardWidth-GameObject.getufoSize());
+		ufo.setY(alienManager.getMinAlienY() - alienManager.getRowspacing());		
+	}
+
+	public void resetAliens()
+	{
+		alienManager.init();
 	}
 
 
@@ -235,15 +246,17 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			{
 				if(alienManager.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
 				{
-					
+
 					player.removeShot();
 					sound.play("sounds/alien_hit.wav");
 					alienHit(alienManager.getAlien(i));
 					increaseScore(alienManager.getAlien(i));
 					alienManager.removeAlien(alienManager.getAlien(i));
+
+
 					break;
 				}
-				
+
 				if(ufo.getBounds().intersects(player.getShot().getBounds()))
 				{
 					ufo.setVisible(false);
@@ -256,7 +269,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			}
 		}
 	}
-	
+
 	public void increaseScore(Alien a)
 	{
 		if (a.getType() == GameObjectType.Alien1)
@@ -266,7 +279,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if (a.getType() == GameObjectType.Alien3)
 			score+=10;
 	}
-	
+
 	public void alienHit(Alien a)
 	{
 		exp.setVisible(true);
@@ -274,10 +287,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		exp.setY(a.getY());
 		//yeah ik this stuff can go in start but i like it here
 		exp.start();
-		
-		
+
+
 	}
-	
+
 	public void ufoHit(UFO u)
 	{
 		exp.setVisible(true);
@@ -285,8 +298,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		exp.setY(u.getY());
 		//yeah ik this stuff can go in start but i like it here
 		exp.start();
-		
-		
+
+
 	}
 
 
