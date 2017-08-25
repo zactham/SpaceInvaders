@@ -14,7 +14,7 @@ public class AlienManager
 	private int rowSpacing = 50;
 	private int alienMovement = 10;
 	private int alienWidth = 20;
-
+	private static int alienSize=25;
 
 	private int soundSwap = 0;
 
@@ -29,7 +29,7 @@ public class AlienManager
 		int xSpacing=40;
 		int yStart=55;
 		int ySpacing=50;
-		int alienSize=25;
+
 
 
 
@@ -183,6 +183,11 @@ public class AlienManager
 		}
 
 
+	}
+
+	public static int getAlienSize()
+	{
+		return alienSize;
 	}
 
 	public void addAlien(Alien a)

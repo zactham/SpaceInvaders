@@ -9,7 +9,7 @@ public class Explosion extends GameObject
 
 	private Sound sound = new Sound();
 
-	private MyTimer timer = new MyTimer(1000);
+	private MyTimer timer = new MyTimer(100);
 
 	@Override
 	public GameObjectType getType()
@@ -70,7 +70,7 @@ public class Explosion extends GameObject
 	public void start()
 	{
 		timer.start();
-		timer.setDelay(1000);
+		timer.setDelay(100);
 		setVisible(true);
 		getSound().play("sounds/explosion.wav");
 		

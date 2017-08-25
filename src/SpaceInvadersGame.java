@@ -208,7 +208,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//explosion.png").getScaledInstance(GameObject.getStandardSize()-30, GameObject.getStandardSize()-30, Image.SCALE_DEFAULT);
 		exp.setVisible(false);
 		exp.setImage(img);
-		exp.createBounds(exp.getX(), exp.getY(), GameObject.getExplosionSize(), GameObject.getExplosionSize());
+		exp.createBounds(exp.getX(), exp.getY(), AlienManager.getAlienSize(), AlienManager.getAlienSize());
 
 	}
 
