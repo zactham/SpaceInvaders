@@ -14,6 +14,9 @@ public class GameObject
 	public static final int ufoSize = 40;
 	public static final int expSize = 20;
 	private Rectangle bounds = null;
+	
+	private static final int playerHeight = standardSize - 25;
+	private static final int playerWidth = playerHeight - 25;
 
 
 	private static int gameWidth = 0;
@@ -75,6 +78,18 @@ public class GameObject
 	{
 		gameHeight = gh;
 	}
+	
+	public static int getPlayerHeight()
+	{
+		return playerHeight;
+	}
+	
+	public static int getPlayerWidth()
+	{
+		return playerWidth;
+	}
+	
+	
 
 	public Rectangle getBounds()
 	{

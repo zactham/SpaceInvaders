@@ -177,7 +177,7 @@ public class AlienManager
 
 			for(int i = 0; i <alienList.size(); i++)
 			{
-				alienList.get(i).updateBounds();
+				alienList.get(i).update();
 			}
 
 		}
