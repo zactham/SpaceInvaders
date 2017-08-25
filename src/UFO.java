@@ -12,6 +12,8 @@ public class UFO extends GameObject
 
 	private boolean isVisible = false;
 	
+	private int direction=(int)Math.random()*2;
+	
 	int i = 0;
 
 	@Override
@@ -60,13 +62,22 @@ public class UFO extends GameObject
 
 	private void moveUFOsideways()
 	{
-		setX(getX()-movement);
+		if(direction==1){
+			setX(getX()-movement);
+		}
+		else if(direction==2){
+			setX(getX()+movement);
+		}
+		
+	}
+	
+	public int getDirection(){
+		return direction; 
 	}
 
 	public void setVisible(boolean v)
 	{
 		isVisible = v;
-		
 	}
 
 	public boolean getVisible()
@@ -79,13 +90,13 @@ public class UFO extends GameObject
 		setVisible(true);
 		getSound().play("sounds/ufo_lowpitch.wav");
 		getSound().loop(true);
-		
 	}
 
 	public void stop()
 	{
 		setVisible(false);
 		getSound().stop();
+		createBounds(0,0,0,0);
 	}
 
 
