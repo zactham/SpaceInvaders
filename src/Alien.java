@@ -51,7 +51,7 @@ public class Alien extends GameObject
 	
 		
 
-		int randomNum = (int) (Math.random()*2000 +1);
+		int randomNum = (int) (Math.random()*4000 +1);
 
 		if(randomNum == 1)
 		{

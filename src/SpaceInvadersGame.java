@@ -184,7 +184,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		player.setImage(playerImg);
 		player.setX(gameboardWidth/2);
 		player.setY(gameboardHeight-100);
-		player.createBounds(player.getX(),player.getY(),player.getStandardSize(), player.getStandardSize());
+		player.createBounds(player.getX(),player.getY(),player.getPlayerWidth(), player.getPlayerHeight());
 	}
 
 	public void initBarricades()
@@ -204,7 +204,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void initExplosion()
 	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//explosion.png").getScaledInstance(GameObject.getStandardSize()-30, GameObject.getStandardSize()-30, Image.SCALE_DEFAULT);
+		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(),
+				"images//explosion.png").getScaledInstance(GameObject.getStandardSize()-40, GameObject.getStandardSize()-40, Image.SCALE_DEFAULT);
 		exp.setVisible(false);
 		exp.setImage(img);
 		exp.createBounds(exp.getX(), exp.getY(), AlienManager.getAlienSize(), AlienManager.getAlienSize());
@@ -246,7 +247,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void checkCollisions()
 	{
 
-		if(player.getShot() != null && ufo.getVisible() == true)
+		if(player.getShot() != null)
 		{
 			for(int i = alienManager.getNumAliens() - 1; i >-1; i--)
 			{
@@ -263,7 +264,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 					break;
 				}
 
-				if(ufo.getBounds().intersects(player.getShot().getBounds()))
+				if(ufo.getBounds().intersects(player.getShot().getBounds())&& ufo.getVisible() == true)
 				{
 					int ran=(int) (Math.random()*6);
 					ufo.stop();
