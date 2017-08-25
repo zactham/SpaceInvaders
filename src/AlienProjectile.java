@@ -6,6 +6,9 @@ public class AlienProjectile extends GameObject
 {
 	private Image alienprojectileImage;
 	
+	
+	private static final int speed=6;
+	
 	@Override
 	public GameObjectType getType()
 	{
@@ -25,15 +28,14 @@ public class AlienProjectile extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
-		page.setColor(Color.red);
-		page.drawRect(getX(), getY(), projectileWidth, projectileWidth);
+		page.drawImage(alienprojectileImage, getX(), getY(),null);
 	}
 	
 	@Override
 	public void update()
 	{
 		super.update();
-		setY(getY()+projectileHeight);
+		setY(getY()+speed);
 		updateBounds();
 	}
 

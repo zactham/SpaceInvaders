@@ -175,11 +175,13 @@ public class AlienManager
 			soundSwap++;
 			soundSwap%=4;
 
-			for(int i = 0; i <alienList.size(); i++)
-			{
-				alienList.get(i).update();
-			}
+			
 
+		}
+		
+		for(int i = 0; i <alienList.size(); i++)
+		{
+			alienList.get(i).update();
 		}
 
 
