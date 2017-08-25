@@ -246,7 +246,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void checkCollisions()
 	{
 
-		if(player.getShot() != null)
+		if(player.getShot() != null && ufo.getVisible() == true)
 		{
 			for(int i = alienManager.getNumAliens() - 1; i >-1; i--)
 			{
