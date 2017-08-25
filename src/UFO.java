@@ -12,7 +12,7 @@ public class UFO extends GameObject
 
 	private boolean isVisible = false;
 	
-	private int direction=(int)Math.random()*2;
+	private int direction=(int)Math.random()*2 + 1; // returns a number form 1 to 2
 	
 	int i = 0;
 
@@ -90,13 +90,13 @@ public class UFO extends GameObject
 		setVisible(true);
 		getSound().play("sounds/ufo_lowpitch.wav");
 		getSound().loop(true);
+		
 	}
 
 	public void stop()
 	{
 		setVisible(false);
 		getSound().stop();
-		createBounds(0,0,0,0);
 	}
 
 
