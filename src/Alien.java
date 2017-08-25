@@ -1,15 +1,21 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Alien extends GameObject
 {
 	private  ArrayList<Image> alienList= new ArrayList<Image>();
 	private static int imageIndex = 0;
+	private AlienProjectile alienShot = null;
+	private Image i = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images/alienShot.png").
+			getScaledInstance(GameObject.getPlayerHeight(), GameObject.getPlayerWidth(), Image.SCALE_DEFAULT);
 
+	private Sound sound = new Sound();
+	
 	public Alien()
 	{
-		
+
 	}
 	
 	public void incImageIndex()
@@ -31,6 +37,10 @@ public class Alien extends GameObject
 	{
 		super.draw(page);
 		page.drawImage(alienList.get(imageIndex), getX(), getY(),null);
+	
+		if (!(alienShot == null))
+		alienShot.draw(page);
+	
 	}
 	
 	
@@ -38,6 +48,60 @@ public class Alien extends GameObject
 	{
 		super.update();
 		updateBounds();
+	
+		
+
+		int randomNum = (int) (Math.random()*500 +1);
+
+		if(randomNum == 1)
+		{
+			AlienProjectile shot = new AlienProjectile();
+			shot.setImage(i);
+			fire();
+		}
+		
+		if(!(alienShot == null))
+		{
+			alienShot.update();
+			if(alienShot.getY()>GameObject.getGameHeight())
+			{
+				removeShot();
+			}
+		}
+	}
+	
+	public AlienProjectile getAlienShot()
+	{
+		return alienShot;
+	}
+	
+	public void setAlienShot(AlienProjectile a)
+	{
+		alienShot = a;
+	}
+	
+	public void removeShot()
+	{
+		alienShot = null;
+	}
+	
+	public void fire()
+	{
+		if(alienShot==null)
+		{
+			alienShot=new AlienProjectile();
+			//shot.setX(this.x);
+			
+			//This will have to change eventually for now we can use this
+			//shot.setX(x+((int)getStandardSize()/2)-2/2);
+			//		or this
+			alienShot.setX(this.getX());
+			
+			alienShot.setY(this.getY());
+			sound.play("sounds//alienShoot.wav");
+			
+			alienShot.createBounds(alienShot.getX(), alienShot.getY(), projectileWidth,projectileHeight);
+		}
 	}
 
 	
