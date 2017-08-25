@@ -175,12 +175,14 @@ public class AlienManager
 			soundSwap++;
 			soundSwap%=4;
 
+			for(int i = 0; i <alienList.size(); i++)
+			{
+				alienList.get(i).updateBounds();
+			}
+
 		}
 
-		for(int i = 0; i <alienList.size(); i++)
-		{
-			alienList.get(i).updateBounds();
-		}
+
 	}
 
 	public void addAlien(Alien a)
@@ -192,7 +194,7 @@ public class AlienManager
 	{
 		alienList.remove(a);
 	}
-	
+
 	public Alien getAlien(int i)
 	{
 		return alienList.get(i);

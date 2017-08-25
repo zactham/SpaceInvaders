@@ -32,6 +32,12 @@ public class Alien extends GameObject
 		super.draw(page);
 		page.drawImage(alienList.get(imageIndex), getX(), getY(),null);
 	}
+	
+	
+	public void update()
+	{
+		updateBounds();
+	}
 
 	
 }

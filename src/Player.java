@@ -5,7 +5,7 @@ import java.awt.Image;
 public class Player extends GameObject
 {
 	private PlayerDirection direction = PlayerDirection.NONE;
-	private int speed = 2;
+	private int speed = 5;
 	private Image playerImage;
 	private PlayerProjectile shot=null;
 	
