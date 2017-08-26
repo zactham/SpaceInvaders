@@ -8,8 +8,11 @@ public class Alien extends GameObject
 	private  ArrayList<Image> alienList= new ArrayList<Image>();
 	private static int imageIndex = 0;
 	private AlienProjectile alienShot = null;
+	private int shotSize = 10;
 	private Image alienShotImage = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images/alienShot.png").
-			getScaledInstance(10, 10, Image.SCALE_DEFAULT);
+			getScaledInstance(shotSize, shotSize, Image.SCALE_DEFAULT);
+	
+
 
 	private Sound sound = new Sound();
 	
@@ -95,12 +98,12 @@ public class Alien extends GameObject
 			//This will have to change eventually for now we can use this
 			//shot.setX(x+((int)getStandardSize()/2)-2/2);
 			//		or this
-			alienShot.setX(this.getX());
+			alienShot.setX((getX()+GameObject.getAlienSize()/2)-(shotSize-2));
 			
-			alienShot.setY(this.getY());
+			alienShot.setY(getY());
 			sound.play("sounds//alienShoot.wav");
 			
-			alienShot.createBounds(alienShot.getX(), alienShot.getY(), projectileWidth,projectileHeight);
+			alienShot.createBounds(alienShot.getX(), alienShot.getY(), shotSize,shotSize);
 		}
 	}
 

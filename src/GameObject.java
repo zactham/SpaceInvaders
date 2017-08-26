@@ -13,6 +13,7 @@ public class GameObject
 	protected static final int projectileHeight = 18;
 	public static final int ufoSize = 40;
 	public static final int expSize = 20;
+	private static final int alienSize=25;
 	private Rectangle bounds = null;
 	
 	private static final int playerHeight = standardSize - 25;
@@ -89,6 +90,13 @@ public class GameObject
 		return playerWidth;
 	}
 	
+	public static int getAlienSize()
+	{
+		return alienSize;
+	}
+	
+	
+	
 	
 
 	public Rectangle getBounds()
@@ -107,8 +115,8 @@ public class GameObject
 
 	private void drawBounds(Graphics page)
 	{
-		//page.setColor(Color.white);
-		//page.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int) bounds.getHeight());
+		page.setColor(Color.white);
+		page.drawRect((int)bounds.getX(), (int)bounds.getY(), (int)bounds.getWidth(), (int) bounds.getHeight());
 
 	}
 

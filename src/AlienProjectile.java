@@ -28,6 +28,7 @@ public class AlienProjectile extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
+		super.draw(page);
 		page.drawImage(alienprojectileImage, getX(), getY(),null);
 	}
 	

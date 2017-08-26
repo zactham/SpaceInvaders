@@ -184,7 +184,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		player.setImage(playerImg);
 		player.setX(gameboardWidth/2);
 		player.setY(gameboardHeight-100);
-		player.createBounds(player.getX(),player.getY(),player.getPlayerWidth(), player.getPlayerHeight());
+		player.createBounds(player.getX(),player.getY(),player.getPlayerHeight(), player.getPlayerWidth());
 	}
 
 	public void initBarricades()
@@ -205,7 +205,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void initExplosion()
 	{
 		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(),
-				"images//explosion.png").getScaledInstance(GameObject.getStandardSize()-40, GameObject.getStandardSize()-40, Image.SCALE_DEFAULT);
+				"images//explosion.png").getScaledInstance(GameObject.getExplosionSize(), GameObject.getExplosionSize(), Image.SCALE_DEFAULT);
 		exp.setVisible(false);
 		exp.setImage(img);
 		exp.createBounds(exp.getX(), exp.getY(), AlienManager.getAlienSize(), AlienManager.getAlienSize());
@@ -227,10 +227,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		resetufoPos();
 	}
 
-	public void initAlienProjectile()
-	{
-		Image img = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//alienShot.png").getScaledInstance(GameObject.getufoSize(), GameObject.getufoSize()/2, Image.SCALE_DEFAULT);
-	}
 
 	public void resetufoPos()
 	{

@@ -23,7 +23,7 @@ public class PlayerProjectile extends GameObject
 	public void update()
 	{
 		super.update();
-		this.y-=speed;
+		setY(y-speed);
 		updateBounds();
 	}
 }

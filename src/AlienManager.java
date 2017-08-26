@@ -14,7 +14,7 @@ public class AlienManager
 	private int rowSpacing = 50;
 	private int alienMovement = 10;
 	private int alienWidth = 20;
-	private static int alienSize=25;
+	
 
 	private int soundSwap = 0;
 
@@ -31,22 +31,20 @@ public class AlienManager
 		int ySpacing=50;
 
 
-
-
 		Image alien1Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien1_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
+				"images//alien1_1.png").getScaledInstance(GameObject.getAlienSize(), GameObject.getAlienSize(), Image.SCALE_DEFAULT);
 		Image alien1Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien1_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
+				"images//alien1_2.png").getScaledInstance(GameObject.getAlienSize(), GameObject.getAlienSize(), Image.SCALE_DEFAULT);
 
 		Image alien2Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien2_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
+				"images//alien2_1.png").getScaledInstance(GameObject.getAlienSize(), GameObject.getAlienSize(), Image.SCALE_DEFAULT);
 		Image alien2Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien2_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
+				"images//alien2_2.png").getScaledInstance(GameObject.getAlienSize(), GameObject.getAlienSize(), Image.SCALE_DEFAULT);
 
 		Image alien3Image1 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien3_1.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
+				"images//alien3_1.png").getScaledInstance(GameObject.getAlienSize(), GameObject.getAlienSize(), Image.SCALE_DEFAULT);
 		Image alien3Image2 = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), 
-				"images//alien3_2.png").getScaledInstance(alienSize, alienSize, Image.SCALE_DEFAULT);
+				"images//alien3_2.png").getScaledInstance(GameObject.getAlienSize(), GameObject.getAlienSize(), Image.SCALE_DEFAULT);
 
 		for(int x=0; x<=10; x++)
 		{
@@ -55,7 +53,7 @@ public class AlienManager
 			a1.addImage(alien1Image2);
 			a1.setX(xStart+(xSpacing*x));
 			a1.setY(yStart);
-			a1.createBounds(a1.getX(), a1.getY(),alienSize,alienSize);
+			a1.createBounds(a1.getX(), a1.getY(),GameObject.getAlienSize(),GameObject.getAlienSize());
 			addAlien(a1);
 		}
 
@@ -68,7 +66,7 @@ public class AlienManager
 			a2.addImage(alien2Image2);
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
-			a2.createBounds(a2.getX(), a2.getY(),alienSize,alienSize);
+			a2.createBounds(a2.getX(), a2.getY(),GameObject.getAlienSize(),GameObject.getAlienSize());
 			addAlien(a2);
 		}
 
@@ -80,7 +78,7 @@ public class AlienManager
 			a2.addImage(alien2Image2);
 			a2.setX(xStart+(xSpacing*x));
 			a2.setY(yStart);
-			a2.createBounds(a2.getX(), a2.getY(),alienSize,alienSize);
+			a2.createBounds(a2.getX(), a2.getY(),GameObject.getAlienSize(),GameObject.getAlienSize());
 			addAlien(a2);
 		}
 
@@ -92,7 +90,7 @@ public class AlienManager
 			a3.addImage(alien3Image2);
 			a3.setX(xStart+(xSpacing*x));
 			a3.setY(yStart);
-			a3.createBounds(a3.getX(), a3.getY(),alienSize,alienSize);
+			a3.createBounds(a3.getX(), a3.getY(),GameObject.getAlienSize(),GameObject.getAlienSize());
 			addAlien(a3);
 		}
 
@@ -105,7 +103,7 @@ public class AlienManager
 			a3.addImage(alien3Image2);
 			a3.setX(xStart+(xSpacing*x));
 			a3.setY(yStart);
-			a3.createBounds(a3.getX(), a3.getY(),alienSize,alienSize);
+			a3.createBounds(a3.getX(), a3.getY(),GameObject.getAlienSize(),GameObject.getAlienSize());
 			addAlien(a3);
 		}
 
@@ -189,7 +187,7 @@ public class AlienManager
 
 	public static int getAlienSize()
 	{
-		return alienSize;
+		return GameObject.getAlienSize();
 	}
 
 	public void addAlien(Alien a)
