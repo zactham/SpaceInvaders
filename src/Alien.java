@@ -12,6 +12,7 @@ public class Alien extends GameObject
 	private Image alienShotImage = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images/alienShot.png").
 			getScaledInstance(shotSize, shotSize, Image.SCALE_DEFAULT);
 	private boolean alienFired = false;
+	protected boolean lowestInColumn;
 
 
 	private Sound sound = new Sound();
@@ -96,6 +97,17 @@ public class Alien extends GameObject
 	{
 		alienFired = af;
 	}
+	
+	public boolean getlowestinCol()
+	{
+		return lowestInColumn;
+	}
+
+	public void setlowestinCol(boolean low)
+	{
+		lowestInColumn = low;
+	}
+	
 	
 	public void fire()
 	{
