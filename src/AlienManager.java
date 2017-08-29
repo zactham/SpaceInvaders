@@ -105,6 +105,7 @@ public class AlienManager
 			a3.setY(yStart);
 			a3.createBounds(a3.getX(), a3.getY(),GameObject.getAlienSize(),GameObject.getAlienSize());
 			addAlien(a3);
+			a3.setlowestinCol(true);
 		}
 
 
@@ -172,6 +173,8 @@ public class AlienManager
 
 			soundSwap++;
 			soundSwap%=4;
+			
+			
 
 			
 

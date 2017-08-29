@@ -17,7 +17,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private int score = 0;
 	private boolean end;
 
-
+	private boolean live1 = true;
+	private boolean live2 = true;
+	private boolean live3 = true;
 
 	private Player player;
 
@@ -268,21 +270,33 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 					sound.play("sounds/alien_hit.wav");
 					ufoHit(ufo);
 					switch(ran){
-						case 1: score+=100;
-						break;
-						case 2: score+=50;
-						break;
-						case 3: score+=200;
-						break;
-						case 4: score+=250;
-						break;
-						case 5: score+=300;
-						break;
+					case 1: score+=100;
+					break;
+					case 2: score+=50;
+					break;
+					case 3: score+=200;
+					break;
+					case 4: score+=250;
+					break;
+					case 5: score+=300;
+					break;
 					}
 					break;
 				}
+
+				if (alienManager.getAlien(i).getAlienFired())
+				{
+					if(alienManager.getAlien(i).getAlienShot().getBounds().intersects(player.getBounds()))
+					{
+						System.out.println("Player has been hit");
+						playerHit();
+
+					}
+				}
 			}
 		}
+
+
 	}
 
 	public void increaseScore(Alien a)
@@ -294,18 +308,43 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if (a.getType() == GameObjectType.Alien3)
 			score+=10;
 	}
-	
+
 	public void alienHit(Alien a)
 	{
+
+		for(int i = 0; i < GameObject.getAlienSize(); i++)
+		{
+			int alienY = alienManager.getAlien(i).getY();
+			if (alienManager.getAlien(i).getlowestinCol())
+			{
+				for(int z = 0; z < GameObject.getAlienSize(); i++)
+				{
+					if(alienManager.getAlien(z).getY() == alienY - 50)
+						alienManager.getAlien(z).setlowestinCol(true);
+				}
+			}
+		}
+
 		exp.setVisible(true);
 		exp.setX(a.getX());
 		exp.setY(a.getY());
 		//yeah ik this stuff can go in start but i like it here
 		exp.start();
-		
-		
+
+
 	}
-	
+
+	public void playerHit()
+	{
+		if(!live1)
+			live2 = false;
+		else if(!live2)
+			live3 = false;
+
+		live1 = false;
+
+	}
+
 	public void ufoHit(UFO u)
 	{
 		exp.setVisible(true);
@@ -313,8 +352,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		exp.setY(u.getY());
 		//yeah ik this stuff can go in start but i like it here
 		exp.start();
-		
-		
+
+
 	}
 
 
@@ -371,8 +410,23 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		//Displays the Score
 		page.setColor(Color.WHITE);
 		page.setFont(new Font("Lucida Sans Typewriter" ,Font.PLAIN, 25));
-		page.drawString("SCORE: ", 15, 30);
-		page.drawString(Integer.toString(score), 15, 55);
+		page.drawString("SCORE: ", 20, 30);
+		page.setColor(Color.green);
+		page.drawString(Integer.toString(score), 110, 30);
+	}
+
+	public void displayLives(Graphics page)
+	{
+		page.setColor(Color.WHITE);
+		page.setFont(new Font("Lucida Sans Typewriter" ,Font.PLAIN, 25));
+		page.drawString("LIVES: ", 400, 20);
+		if(live1)
+			page.drawImage(player.getImage(), 600, 20, null);
+		if(live1 && live2)
+			page.drawImage(player.getImage(), 535, 20, null);
+		if(live1 && live2 && live3)
+			page.drawImage(player.getImage(), 470, 20, null);
+
 	}
 
 	@Override
@@ -381,6 +435,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		super.paintComponent(page);		// paint baseclass members too
 
 		displayScore(page);
+		displayLives(page);
 
 		drawGame(page);
 	}

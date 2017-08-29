@@ -11,7 +11,7 @@ public class Alien extends GameObject
 	private int shotSize = 10;
 	private Image alienShotImage = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images/alienShot.png").
 			getScaledInstance(shotSize, shotSize, Image.SCALE_DEFAULT);
-	
+	private boolean alienFired = false;
 
 
 	private Sound sound = new Sound();
@@ -54,7 +54,7 @@ public class Alien extends GameObject
 	
 		
 
-		int randomNum = (int) (Math.random()*4000 +1);
+		int randomNum = (int) (Math.random()*3000 +1);
 
 		if(randomNum == 1)
 		{
@@ -87,10 +87,22 @@ public class Alien extends GameObject
 		alienShot = null;
 	}
 	
+	public boolean getAlienFired()
+	{
+		return alienFired;
+	}
+	
+	public void setAlienFired(boolean af)
+	{
+		alienFired = af;
+	}
+	
 	public void fire()
 	{
-		if(alienShot==null)
+		
+		if(alienShot==null && getlowestinCol() == true)
 		{
+			setAlienFired(true);
 			alienShot=new AlienProjectile();
 			alienShot.setImage(alienShotImage);
 			//shot.setX(this.x);

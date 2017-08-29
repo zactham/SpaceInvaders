@@ -7,6 +7,7 @@ public class GameObject
 
 	protected int x = 0;
 	protected int y = 0;
+	protected boolean lowestInColumn;
 
 	private static final int standardSize = 75;
 	protected static final int projectileWidth = 5;
@@ -15,6 +16,7 @@ public class GameObject
 	public static final int expSize = 20;
 	private static final int alienSize = 30;
 	private Rectangle bounds = null;
+	
 	
 	private static final int playerHeight = standardSize - 25;//50
 	private static final int playerWidth = standardSize - 50;//25
@@ -44,6 +46,17 @@ public class GameObject
 	{
 		y = yPos;
 	}
+	
+	public boolean getlowestinCol()
+	{
+		return lowestInColumn;
+	}
+
+	public void setlowestinCol(boolean low)
+	{
+		lowestInColumn = low;
+	}
+	
 
 	public static int getStandardSize()
 	{
