@@ -247,6 +247,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		if(player.getShot() != null)
 		{
+			ufocheckCollisions();
+
+
 			for(int i = alienManager.getNumAliens() - 1; i >-1; i--)
 			{
 				if(alienManager.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
@@ -262,28 +265,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 					break;
 				}
 
-				if(ufo.getBounds().intersects(player.getShot().getBounds())&& ufo.getVisible() == true)
-				{
-					int ran=(int) (Math.random()*6);
-					ufo.stop();
-					player.removeShot();
-					sound.play("sounds/alien_hit.wav");
-					ufoHit(ufo);
-					switch(ran){
-					case 1: score+=100;
-					break;
-					case 2: score+=50;
-					break;
-					case 3: score+=200;
-					break;
-					case 4: score+=250;
-					break;
-					case 5: score+=300;
-					break;
-					}
-					break;
-				}
 
+				/*
 				if (alienManager.getAlien(i).getAlienFired())
 				{
 					if(alienManager.getAlien(i).getAlienShot().getBounds().intersects(player.getBounds()))
@@ -293,6 +276,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 					}
 				}
+				 */
 			}
 		}
 
@@ -315,6 +299,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		for(int i = 0; i < GameObject.getAlienSize(); i++)
 		{
 			int alienY = alienManager.getAlien(i).getY();
+
 			if (alienManager.getAlien(i).getlowestinCol())
 			{
 				for(int z = 0; z < GameObject.getAlienSize(); i++)
@@ -356,6 +341,29 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	}
 
+	public void ufocheckCollisions()
+	{
+		if(ufo.getBounds().intersects(player.getShot().getBounds())&& ufo.getVisible() == true)
+		{
+			int ran=(int) (Math.random()*6);
+			ufo.stop();
+			player.removeShot();
+			sound.play("sounds/alien_hit.wav");
+			ufoHit(ufo);
+			switch(ran){
+			case 1: score+=100;
+			break;
+			case 2: score+=50;
+			break;
+			case 3: score+=200;
+			break;
+			case 4: score+=250;
+			break;
+			case 5: score+=300;
+			break;
+			}
+		}
+	}
 
 
 	// Centers the window

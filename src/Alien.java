@@ -62,7 +62,7 @@ public class Alien extends GameObject
 			fire();
 		}
 		
-		if(!(alienShot == null))
+		if(alienShot != null)
 		{
 			alienShot.update();
 			if(alienShot.getY()>GameObject.getGameHeight())
