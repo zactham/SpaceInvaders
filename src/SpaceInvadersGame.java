@@ -181,12 +181,12 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void initPlayer()
 	{
 		Image playerImg = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images//player.png").
-				getScaledInstance(GameObject.getPlayerHeight(), GameObject.getPlayerWidth(), Image.SCALE_DEFAULT);
+				getScaledInstance(GameObject.getPlayerWidth(), GameObject.getPlayerHeight(), Image.SCALE_DEFAULT);
 		player = new Player();	
 		player.setImage(playerImg);
 		player.setX(gameboardWidth/2);
 		player.setY(gameboardHeight-100);
-		player.createBounds(player.getX(),player.getY(),player.getPlayerHeight(), player.getPlayerWidth());
+		player.createBounds(player.getX(),player.getY(),GameObject.getPlayerWidth(), GameObject.getPlayerHeight());
 	}
 
 	public void initBarricades()

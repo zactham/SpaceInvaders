@@ -18,8 +18,8 @@ public class GameObject
 	private Rectangle bounds = null;
 	
 	
-	private static final int playerHeight = standardSize - 25;//50
-	private static final int playerWidth = standardSize - 50;//25
+	private static final int playerWidth = standardSize - 25;//50
+	private static final int playerHeight = standardSize - 50;//25
 
 
 	private static int gameWidth = 700;

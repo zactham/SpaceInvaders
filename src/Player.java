@@ -69,8 +69,8 @@ public class Player extends GameObject
 		if(this.getX() < 0)
 			this.setX(0);
 
-		if (getX()>getGameWidth()-getPlayerWidth()-getPlayerWidth())
-			setX(getGameWidth()-getPlayerWidth()-getPlayerWidth());
+		if (getX()>getGameWidth()-getPlayerWidth())
+			setX(getGameWidth()-getPlayerWidth());
 
 		if (direction == PlayerDirection.RIGHT)
 			x+=speed;
