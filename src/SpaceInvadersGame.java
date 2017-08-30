@@ -245,37 +245,47 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 		if(player.getShot() != null)
 		{
-			ufocheckCollisions();
-
-
-			for(int i = alienManager.getNumAliens() - 1; i >-1; i--)
+			if(!ufocheckCollisions())
 			{
-				if(alienManager.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
+				//Checks if the player hits the alien
+				for(int i = alienManager.getNumAliens() - 1; i >-1; i--)
 				{
-
-					player.removeShot();
-					sound.play("sounds/alien_hit.wav");
-					alienHit(alienManager.getAlien(i));
-					increaseScore(alienManager.getAlien(i));
-					alienManager.removeAlien(alienManager.getAlien(i));
-
-
-					break;
-				}
-			}
-			for(int z = 0; z< alienManager.getNumAliens(); z++)
-			{
-
-				if (alienManager.getAlien(z).getAlienFired())
-				{
-					if(alienManager.getAlien(z).getAlienShot().getBounds().intersects(player.getBounds()))
+					if(alienManager.getAlien(i).getBounds().intersects(player.getShot().getBounds()))
 					{
-						System.out.println("Player has been hit");
-						playerHit();
 
+						player.removeShot();
+						sound.play("sounds/alien_hit.wav");
+						alienHit(alienManager.getAlien(i));
+						increaseScore(alienManager.getAlien(i));
+						alienManager.removeAlien(alienManager.getAlien(i));
+
+
+						break;
 					}
 				}
-			}				 
+			}
+		}
+		//Checks if the alien hits the player
+		for(int z = 0; z< alienManager.getNumAliens(); z++)
+		{
+
+			if (alienManager.getAlien(z).getAlienShot() != null)
+			{
+				if(alienManager.getAlien(z).getAlienShot().getBounds().intersects(player.getBounds()))
+				{
+					System.out.println("Player has been hit");
+					playerHit();
+					alienManager.getAlien(z).setAlienShot(null);
+
+				}
+				
+				
+			}
+			if(alienManager.getAlien(z).getBounds().intersects(player.getBounds()))
+			{
+				playerHit();
+			}
+
 
 		}
 
@@ -291,10 +301,11 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		if (a.getType() == GameObjectType.Alien3)
 			score+=10;
 	}
-	
+
 	public void increaseUFOScore(int ran)
 	{
-		switch(ran){
+		switch(ran)
+		{
 		case 0: score+=100;
 		break;
 		case 1: score+=150;
@@ -309,16 +320,16 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	}
 	public void alienHit(Alien a)
 	{
-
-		for(int i = 0; i < GameObject.getAlienSize(); i++)
+		if (a.getlowestinCol())
 		{
-			int alienY = alienManager.getAlien(i).getY();
-			int alienX = alienManager.getAlien(i).getX();
-
-			if (a.getlowestinCol())
+			for(int i = 0; i < alienManager.getNumAliens(); i++)
 			{
-				if(a.getY() == alienY - alienManager.getRowspacing() && a.getX() == alienX)
+				int alienY = alienManager.getAlien(i).getY();
+				int alienX = alienManager.getAlien(i).getX();
+
+				if(a.getY() - alienManager.getRowspacing() == alienY && a.getX() == alienX)
 					alienManager.getAlien(i).setlowestinCol(true);
+
 			}
 		}
 
@@ -334,6 +345,8 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void playerHit()
 	{
 		lives--;
+		
+		sound.play("sounds/explosion.wav");
 
 	}
 
@@ -348,18 +361,19 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	}
 
-	public void ufocheckCollisions()
+	public boolean ufocheckCollisions()
 	{
-		if(ufo.getBounds().intersects(player.getShot().getBounds())&& ufo.getVisible() == true)
+		if(ufo.getBounds().intersects(player.getShot().getBounds()) && ufo.getVisible() == true)
 		{
-			int ran=(int) (Math.random()*6);
+			int ran = (int) (Math.random()*5);
 			ufo.stop();
 			player.removeShot();
 			sound.play("sounds/alien_hit.wav");
 			ufoHit(ufo);
 			increaseUFOScore(ran);
-			
+			return true;
 		}
+		return false;
 	}
 
 

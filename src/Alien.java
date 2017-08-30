@@ -11,17 +11,16 @@ public class Alien extends GameObject
 	private int shotSize = 10;
 	private Image alienShotImage = TitleScreen.theApp.getImage(TitleScreen.theApp.getCodeBase(), "images/alienShot.png").
 			getScaledInstance(shotSize, shotSize, Image.SCALE_DEFAULT);
-	private boolean alienFired = false;
 	protected boolean lowestInColumn;
 
 
 	private Sound sound = new Sound();
-	
+
 	public Alien()
 	{
 
 	}
-	
+
 	public void incImageIndex()
 	{
 		imageIndex++;
@@ -39,30 +38,34 @@ public class Alien extends GameObject
 	@Override
 	public void draw(Graphics page)
 	{
+		if(getlowestinCol())
+		{
+			drawBounds(page);
+		}
 		super.draw(page);
 		page.drawImage(alienList.get(imageIndex), getX(), getY(),null);
-	
+
 		if (!(alienShot == null))
-		alienShot.draw(page);
-	
+			alienShot.draw(page);
+
 	}
-	
-	
+
+
 	public void update()
 	{
 		super.update();
 		updateBounds();
-	
-		
 
-		int randomNum = (int) (Math.random()*3000 +1);
+
+
+		int randomNum = (int) (Math.random()*2000 +1);
 
 		if(randomNum == 1)
 		{
-			
+
 			fire();
 		}
-		
+
 		if(alienShot != null)
 		{
 			alienShot.update();
@@ -72,32 +75,23 @@ public class Alien extends GameObject
 			}
 		}
 	}
-	
+
 	public AlienProjectile getAlienShot()
 	{
 		return alienShot;
 	}
-	
+
 	public void setAlienShot(AlienProjectile a)
 	{
 		alienShot = a;
 	}
-	
+
 	public void removeShot()
 	{
 		alienShot = null;
 	}
-	
-	public boolean getAlienFired()
-	{
-		return alienFired;
-	}
-	
-	public void setAlienFired(boolean af)
-	{
-		alienFired = af;
-	}
-	
+
+
 	public boolean getlowestinCol()
 	{
 		return lowestInColumn;
@@ -107,29 +101,28 @@ public class Alien extends GameObject
 	{
 		lowestInColumn = low;
 	}
-	
-	
+
+
 	public void fire()
 	{
-		
+
 		if(alienShot==null && getlowestinCol() == true)
 		{
-			setAlienFired(true);
 			alienShot=new AlienProjectile();
 			alienShot.setImage(alienShotImage);
 			//shot.setX(this.x);
-			
+
 			//This will have to change eventually for now we can use this
 			//shot.setX(x+((int)getStandardSize()/2)-2/2);
 			//		or this
 			alienShot.setX((getX()+GameObject.getAlienSize()/2)-(shotSize-2));
-			
+
 			alienShot.setY(getY());
 			sound.play("sounds//alienShoot.wav");
-			
+
 			alienShot.createBounds(alienShot.getX(), alienShot.getY(), shotSize,shotSize);
 		}
 	}
 
-	
+
 }
