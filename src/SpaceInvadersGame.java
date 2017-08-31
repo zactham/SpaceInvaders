@@ -33,7 +33,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	private AlienManager alienManager;
 
 	//private JFrame restart;
-	private JFrame gameOver;
+	private boolean gameOver = false;
 	private JFrame start;
 
 	private final int gameboardWidth = 700;
@@ -278,12 +278,13 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 					alienManager.getAlien(z).setAlienShot(null);
 
 				}
-				
-				
+
+
 			}
 			if(alienManager.getAlien(z).getBounds().intersects(player.getBounds()))
 			{
 				playerHit();
+				break;
 			}
 
 
@@ -345,7 +346,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	public void playerHit()
 	{
 		lives--;
-		
+
 		sound.play("sounds/explosion.wav");
 
 	}
@@ -445,16 +446,23 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			page.drawImage(player.getImage(), 535, 20, null);
 		if(lives>=1)
 			page.drawImage(player.getImage(), 470, 20, null);
+		if(lives<1)
+		{
+			gameOver = true;
+			gameEnding();
+			
+		}
 
 	}
-
 	@Override
 	protected void paintComponent(Graphics page)
 	{
 		super.paintComponent(page);		// paint baseclass members too
 
 		displayScore(page);
-		displayLives(page);
+
+		if(!gameOver)
+			displayLives(page);
 
 		drawGame(page);
 	}
