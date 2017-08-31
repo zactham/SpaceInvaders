@@ -273,8 +273,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			{
 				if(alienManager.getAlien(z).getAlienShot().getBounds().intersects(player.getBounds()))
 				{
-					System.out.println("Player has been hit");
-					playerHit();
+					playerHit(alienManager.getAlien(z));
 					alienManager.getAlien(z).setAlienShot(null);
 
 				}
@@ -283,7 +282,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			}
 			if(alienManager.getAlien(z).getBounds().intersects(player.getBounds()))
 			{
-				playerHit();
+				playerHit(alienManager.getAlien(z));
 				break;
 			}
 
@@ -334,32 +333,35 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 			}
 		}
 
-		exp.setVisible(true);
-		exp.setX(a.getX());
-		exp.setY(a.getY());
-		//yeah ik this stuff can go in start but i like it here
-		exp.start();
+		displayExp(a);
 
 
 	}
-
-	public void playerHit()
+	
+	public void displayExp(GameObject a)
 	{
-		lives--;
+			exp.setVisible(true);
+			exp.setX(a.getX());
+			exp.setY(a.getY());
+			//yeah ik this stuff can go in start but i like it here
+			exp.start();	
+	}
 
+	public void playerHit(Alien a)
+	{
+		exp.setVisible(true);
+		exp.setX(a.getAlienShot().getX());
+		exp.setY(a.getAlienShot().getY());
+		//yeah ik this stuff can go in start but i like it here
+		exp.start();
+		lives--;
 		sound.play("sounds/explosion.wav");
 
 	}
 
 	public void ufoHit(UFO u)
 	{
-		exp.setVisible(true);
-		exp.setX(u.getX());
-		exp.setY(u.getY());
-		//yeah ik this stuff can go in start but i like it here
-		exp.start();
-
-
+		displayExp(u);
 	}
 
 	public boolean ufocheckCollisions()
@@ -420,9 +422,22 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		}
 	}
 
-	private void resetGame()
+	private void resetGame()//TODO 
 	{
+		for(int i = alienManager.getNumAliens()-1; i >-1 ; i--)
+		{
+			alienManager.removeAlien(alienManager.getAlien(i));
+		}
+		//resetAliens();
+		score = 0;
+		lives = 3;
+		gameOver = false;
+		
+		initPlayer();
 
+		alienManager.init();
+
+		initUFOs();
 	}
 
 	public void displayScore(Graphics page)
