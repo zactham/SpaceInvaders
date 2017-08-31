@@ -12,7 +12,7 @@ public class UFO extends GameObject
 
 	private boolean isVisible = false;
 	
-	private int direction=(int)Math.random()*2 + 1; // returns a number form 1 to 2
+	private int direction = 0;
 	
 	int i = 0;
 
@@ -62,17 +62,21 @@ public class UFO extends GameObject
 
 	private void moveUFOsideways()
 	{
-		if(direction==1){
+		if(direction==1)
 			setX(getX()-movement);
-		}
-		else if(direction==2){
+		else if(direction==2)
 			setX(getX()+movement);
-		}
 		
 	}
 	
-	public int getDirection(){
+	public int getDirection()
+	{
 		return direction; 
+	}
+	
+	public void setDirection()
+	{
+		direction = (int)(Math.random()*2 + 1);
 	}
 
 	public void setVisible(boolean v)
@@ -90,6 +94,14 @@ public class UFO extends GameObject
 		setVisible(true);
 		getSound().play("sounds/ufo_lowpitch.wav");
 		getSound().loop(true);
+		
+		setDirection();
+		System.out.println(getDirection());
+		
+		if(getDirection()==1)
+			setX(GameObject.getGameWidth()-getufoSize());
+		else if(getDirection()==2)
+			setX(0);
 		
 	}
 
