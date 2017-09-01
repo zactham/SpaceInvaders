@@ -96,7 +96,7 @@ public class UFO extends GameObject
 		getSound().loop(true);
 		
 		setDirection();
-		System.out.println(getDirection());
+		//System.out.println(getDirection());
 		
 		if(getDirection()==1)
 			setX(GameObject.getGameWidth()-getufoSize());

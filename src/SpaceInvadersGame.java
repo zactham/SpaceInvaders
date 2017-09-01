@@ -62,7 +62,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		// launch game
 		JFrame frame = new JFrame("Sample Frame");
 		frame.getContentPane().add(this);
-		frame.setTitle("Game Title");
+		frame.setTitle("Space Invaders");
 		this.setBackground(Color.black);
 
 		JOptionPane.showMessageDialog(start, "Game Instructions");
@@ -318,6 +318,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	}
 	public void alienHit(Alien a)
 	{
+		 
 		if (a.getlowestinCol())
 		{
 			for(int i = 0; i < alienManager.getNumAliens(); i++)
@@ -325,8 +326,10 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 				int alienY = alienManager.getAlien(i).getY();
 				int alienX = alienManager.getAlien(i).getX();
 
+			//TODO for int i until the amount of alien rows and multiply the i times the row spacing	
 				if(a.getY() - alienManager.getRowspacing() == alienY && a.getX() == alienX)
 					alienManager.getAlien(i).setlowestinCol(true);
+			
 
 			}
 		}
@@ -347,13 +350,20 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	public void playerHit(Alien a)
 	{
-		exp.setVisible(true);
-		exp.setX(a.getAlienShot().getX());
-		exp.setY(a.getAlienShot().getY());
-		//yeah ik this stuff can go in start but i like it here
-		exp.start();
-		lives--;
-		sound.play("sounds/explosion.wav");
+		//The alien physically hits the player
+		if(a.getAlienShot() == null)
+			displayExp(a);
+		else 
+		{
+			//Alien shoots the player
+			exp.setVisible(true);
+			exp.setX(a.getAlienShot().getX());
+			exp.setY(a.getAlienShot().getY());
+			//yeah ik this stuff can go in start but i like it here
+			exp.start();
+			lives--;
+			sound.play("sounds/explosion.wav");
+		}
 
 	}
 
@@ -430,7 +440,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		score = 0;
 		lives = 3;
 		gameOver = false;
-		
+
 		initPlayer();
 
 		alienManager.init();
@@ -463,7 +473,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		{
 			gameOver = true;
 			gameEnding();
-			
+
 		}
 
 	}
