@@ -318,7 +318,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	}
 	public void alienHit(Alien a)
 	{
-		 
+
 		if (a.getlowestinCol())
 		{
 			for(int i = 0; i < alienManager.getNumAliens(); i++)
@@ -326,11 +326,21 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 				int alienY = alienManager.getAlien(i).getY();
 				int alienX = alienManager.getAlien(i).getX();
 
-			//TODO for int i until the amount of alien rows and multiply the i times the row spacing	
-				if(a.getY() - alienManager.getRowspacing() == alienY && a.getX() == alienX)
-					alienManager.getAlien(i).setlowestinCol(true);
-			
+				//TODO
 
+				if(a.getY() - alienManager.getRowspacing() == alienY  && a.getX() == alienX)
+					alienManager.getAlien(i).setlowestinCol(true);
+				else
+				{
+					for(int z = 1; z < 5; z++)
+					{
+						if (a.getY() - alienManager.getRowspacing() *z == alienY  && a.getX() == alienX);
+						{
+							alienManager.getAlien(i).setlowestinCol(true);
+							break;
+						}
+					}
+				}
 			}
 		}
 
@@ -430,7 +440,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		}
 	}
 
-	private void resetGame()//TODO 
+	private void resetGame() 
 	{
 		for(int i = alienManager.getNumAliens()-1; i >-1 ; i--)
 		{
