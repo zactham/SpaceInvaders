@@ -8,6 +8,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
@@ -31,6 +32,9 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 	private InputManager inputManager;
 	private AlienManager alienManager;
+
+	private ArrayList <Integer> notLowestAlienX = new ArrayList ();
+	private ArrayList <Integer> notLowestAlienY = new ArrayList ();
 
 	//private JFrame restart;
 	private boolean gameOver = false;
@@ -320,29 +324,34 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	{
 		if (a.getlowestinCol())
 		{
+			for(int z = 0; z < notLowestAlienX.size(); z++)
+			{
+				//Needs this in case there are multiple not lowest aliens that were shot
+				if(a.getY() - alienManager.getRowspacing() == notLowestAlienY.get(z)  && a.getX() == notLowestAlienX.get(z))
+				{
+					// set lowest on the alien that has an X + rowspacing above the alien hit
+					int newLowestAlienY = a.getY() - alienManager.getRowspacing() - alienManager.getRowspacing();
+					for(int i = 0; i < alienManager.getNumAliens(); i++)
+					{
+						if(alienManager.getAlien(i).getY() == newLowestAlienY)
+							alienManager.getAlien(i).setlowestinCol(true);
+					}
+				}
+			}
 			for(int i = 0; i < alienManager.getNumAliens(); i++)
 			{
 				int alienY = alienManager.getAlien(i).getY();
 				int alienX = alienManager.getAlien(i).getX();
 
-				//I think there is no way to do this, because if you have 4 aliens in a row, like 
-				// 1
-				// 2
-				// 3
-				// 4
-				//If the 4th alien is hit, the comparison could be 4 and 2, so that would allow the first if to be false
-				// and the second be correct even tho it should compare 3 and 4 and get that first
-
 				if(a.getY() - alienManager.getRowspacing() == alienY  && a.getX() == alienX)
 					alienManager.getAlien(i).setlowestinCol(true);
-				else
-				{
-					if (a.getY() - alienManager.getRowspacing() - alienManager.getRowspacing() == alienY  && a.getX() == alienX);
-					{
-						alienManager.getAlien(i).setlowestinCol(true);
-					}
-				}
+
 			}
+		}
+		else
+		{
+			notLowestAlienX.add(a.getX());
+			notLowestAlienY.add(a.getY());
 		}
 
 
@@ -350,50 +359,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 
 
 	}
-	/*
-	 * 
-	 * yes, this code does not work
-	 * 
-	 * 
-	 * public void alienHit(Alien a)
-	{
-		if (a.getlowestinCol())
-		{
-			if(!checkAliens(a,1));
-			{
 
-				System.out.println("test");
-				for(int r = 2; r < 5; r++)
-				{
-					if (checkAliens(a, r));
-					break;
-				}
-			}
-
-		}
-
-		displayExp(a);
-	}
-
-	public boolean checkAliens(Alien a, int row)
-	{
-		for(int i = 0; i < alienManager.getNumAliens(); i++)
-		{
-			int alienY = alienManager.getAlien(i).getY();
-			int alienX = alienManager.getAlien(i).getX();
-
-			//TODO
-
-			if(a.getY() - alienManager.getRowspacing() * row == alienY  && a.getX() == alienX)
-			{
-				alienManager.getAlien(i).setlowestinCol(true);
-				return true;
-			}
-		}
-		return false;
-	}
-
-	 */
 
 	public void displayExp(GameObject a)
 	{
