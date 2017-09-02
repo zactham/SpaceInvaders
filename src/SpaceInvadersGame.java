@@ -318,7 +318,6 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 	}
 	public void alienHit(Alien a)
 	{
-
 		if (a.getlowestinCol())
 		{
 			for(int i = 0; i < alienManager.getNumAliens(); i++)
@@ -326,28 +325,75 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 				int alienY = alienManager.getAlien(i).getY();
 				int alienX = alienManager.getAlien(i).getX();
 
-				//TODO
+				//I think there is no way to do this, because if you have 4 aliens in a row, like 
+				// 1
+				// 2
+				// 3
+				// 4
+				//If the 4th alien is hit, the comparison could be 4 and 2, so that would allow the first if to be false
+				// and the second be correct even tho it should compare 3 and 4 and get that first
 
 				if(a.getY() - alienManager.getRowspacing() == alienY  && a.getX() == alienX)
 					alienManager.getAlien(i).setlowestinCol(true);
 				else
 				{
-					for(int z = 1; z < 5; z++)
+					if (a.getY() - alienManager.getRowspacing() - alienManager.getRowspacing() == alienY  && a.getX() == alienX);
 					{
-						if (a.getY() - alienManager.getRowspacing() *z == alienY  && a.getX() == alienX);
-						{
-							alienManager.getAlien(i).setlowestinCol(true);
-							break;
-						}
+						alienManager.getAlien(i).setlowestinCol(true);
 					}
 				}
 			}
 		}
 
+
 		displayExp(a);
 
 
 	}
+	/*
+	 * 
+	 * yes, this code does not work
+	 * 
+	 * 
+	 * public void alienHit(Alien a)
+	{
+		if (a.getlowestinCol())
+		{
+			if(!checkAliens(a,1));
+			{
+
+				System.out.println("test");
+				for(int r = 2; r < 5; r++)
+				{
+					if (checkAliens(a, r));
+					break;
+				}
+			}
+
+		}
+
+		displayExp(a);
+	}
+
+	public boolean checkAliens(Alien a, int row)
+	{
+		for(int i = 0; i < alienManager.getNumAliens(); i++)
+		{
+			int alienY = alienManager.getAlien(i).getY();
+			int alienX = alienManager.getAlien(i).getX();
+
+			//TODO
+
+			if(a.getY() - alienManager.getRowspacing() * row == alienY  && a.getX() == alienX)
+			{
+				alienManager.getAlien(i).setlowestinCol(true);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	 */
 
 	public void displayExp(GameObject a)
 	{
