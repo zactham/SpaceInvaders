@@ -69,7 +69,7 @@ public class SpaceInvadersGame extends JPanel implements KeyListener
 		frame.setTitle("Space Invaders");
 		this.setBackground(Color.black);
 
-		JOptionPane.showMessageDialog(start, "Game Instructions");
+		JOptionPane.showMessageDialog(start, "Use the arrow keys to move the ship and space bar to fire while avoiding the alien shots");
 
 		initPlayer();
 
